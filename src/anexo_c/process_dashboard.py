@@ -50,7 +50,7 @@ class process_dashboard:
         fill_value: float = 0,
     ) -> pd.DataFrame:
         # 1) extrai Ano de AnoMes
-        df[self.col_ano] = df[self.col_AnoMes] // 100
+        df.loc[:, self.col_ano] = df[self.col_AnoMes] // 100
 
         # 2) checa parâmetros
         if group_cols is None or value_cols is None:
@@ -93,14 +93,14 @@ class process_dashboard:
 
     def calcula_pis_cofins(self, df: pd.DataFrame) -> pd.DataFrame:
         # 1) soma por Ano e Descrição
-        df_agg = df.groupby([self.col_ano, self.col_descricao], as_index=False)[
+        df_agg = df.groupby([self.col_ano, self.desc_col], as_index=False)[
             self.col_valor
         ].sum()
 
         # 2) pivot das descrições
         df_pivot = df_agg.pivot_table(
             index=[self.col_ano],
-            columns=self.col_descricao,
+            columns=self.desc_col,
             values=self.col_valor,
             aggfunc="sum",
             fill_value=0,
