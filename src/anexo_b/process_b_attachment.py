@@ -1,4 +1,4 @@
-from src.anexo_b.normalize_text import *
+from src.utils.normalize_text import *
 import glob
 import io
 import numpy as np
@@ -23,12 +23,15 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from tqdm import tqdm
 
+from src.utils.normalize_text import DocumentFormatter
+
+STATUS_COLS = ["Contrato","Cliente - Status","CNPJ/CPF - Status","Valor - Status","Data do Contrato - Status","Data de Liquidação - Status",'Quantidade de Parcelas - Status']
 
 class anexo_b:
     def __init__(self):
         pass
 
-    def create_excel_model(
+    def _create_excel_model(
         self,
         file_name: str = None,
         header_color: str = "FFFF00",
@@ -118,7 +121,7 @@ class anexo_b:
         # Salvar o arquivo
         return workbook
 
-    def fill_excel_data(
+    def _fill_excel_data(
         self,
         workbook: Workbook,
         worksheet_name: str,
@@ -308,7 +311,7 @@ class anexo_b:
                         elif data_type == "moeda":
                             merged_cell.number_format = "R$ #,##0.00"
 
-    def consolidate_workbooks_to_xlsx(
+    def _consolidate_workbooks_to_xlsx(
         self,
         workbook_list,
         input_file_path: str,
@@ -538,3 +541,323 @@ class anexo_b:
         workbook.Close(False)
         excel.Quit()
         # print(f"\nArquivo PDF gerado: {output_file}")
+
+    def processar_quadro_zero(self, df_quadro_zero, status_cols, contrato, comparativo):
+        df_quadro = df_quadro_zero.T
+        df_quadro.reset_index(inplace=True)
+        df_quadro.columns = ["Ref.","Base Analítica"]
+        df_quadro["Contrato/Tela Sistêmica"] = ""
+        
+        conferencias = comparativo[comparativo["Contrato"]==contrato].drop_duplicates()[status_cols]
+        conferencias["Contrato"] = "Conferido"
+        conferencias = conferencias.T.reset_index()
+        conferencias.columns = ["Ref.","Base Analítica x Contrato/Tela Sistêmica"]
+            
+        df_quadro["Base Analítica x Contrato/Tela Sistêmica"] = conferencias["Base Analítica x Contrato/Tela Sistêmica"]
+        df_quadro["Anexo"] = f"Anexo N_A{contrato}"
+        
+        df_quadro["Contrato/Tela Sistêmica"] = df_quadro.apply(lambda x: x["Base Analítica"] if x["Base Analítica x Contrato/Tela Sistêmica"]== "Conferido" else "",axis=1)
+        df_quadro["Base Analítica x Contrato/Tela Sistêmica"] = df_quadro["Base Analítica x Contrato/Tela Sistêmica"].apply(lambda x: "Divergente" if x!= "Conferido" else x)
+        
+        df_quadro["Base Analítica"] = df_quadro.apply(lambda x: DocumentFormatter.format_values(x["Base Analítica"], format_as_currency=True) if "Valor do Bem" in x["Ref."] else x["Base Analítica"],axis=1)
+        df_quadro["Contrato/Tela Sistêmica"] = df_quadro.apply(lambda x: DocumentFormatter.format_values(x["Contrato/Tela Sistêmica"], format_as_currency=True) if "Valor do Bem" in x["Ref."] else x["Contrato/Tela Sistêmica"],axis=1)
+
+        workbook = self._create_excel_model(
+            file_name="Modelo_Com_Linha_Oculta.xlsx",
+            header_color="002060",
+            header_text="RESUMO DAS VALIDAÇÕES DAS OPERAÇÕES DE LEASING - ITAÚ UNIBANCO S.A.",
+            header_list=["Ref.","Base Analítica","Contrato/Tela Sistêmica","Base Analítica x Contrato/Tela Sistêmica","Anexo"],
+            alignments=["center", "center", "center", "center","center"],  # Alinhamentos específicos por coluna
+            fill_colors=["002060", "002060","002060","002060","002060"],
+            merge_columns=[1, 1, 1, 2, 1],
+            font="Calibri",
+            font_size=10
+        )
+
+        self._fill_excel_data(workbook, 
+                                    "Modelo", 
+                                    df=df_quadro, 
+                                    text_colors=[None, None, None, None, "FF0000"], 
+                                    bold=[False, False, False, False, True], 
+                                    cell_borders=[True, True, True, True, True],
+                                    cell_alignments=["left", "center", "center", "right" , "center"],
+                                    columns_to_merge=["Anexo"],
+                                    column_types=["texto", "texto", "texto", "texto","texto"])
+        
+        return workbook
+        
+    def processar_quadro_um(self, df, contrato):
+        df_quadro = df[df["Contrato"]==contrato]
+            
+        df_quadro.rename(columns={"Name":"Descrição", "Value":"Valor Contabilizado"}, inplace=True)
+
+        df_quadro.dropna(subset=["Valor Contabilizado"], inplace=True)
+        # Filtrar apenas as linhas com valores diferentes de zero, se necessário
+        df_quadro = df_quadro[df_quadro["Valor Contabilizado"] != 0]
+        df_quadro = df_quadro[["Descrição","COSIF","Valor Contabilizado"]]
+        df_quadro.columns = ["Descrição","COSIF","Valor Contabilizado"]
+        df_quadro["Anexo"] = f"B{contrato}"# f"{name}_DADOS CONTRATUAIS X REGISTRO CONTÁBIL.xlsx"
+
+        df_quadro["Valor Contabilizado"] = df_quadro["Valor Contabilizado"].apply(DocumentFormatter.format_values)
+            
+        workbook = self._create_excel_model(
+            file_name="Modelo_Com_Linha_Oculta.xlsx",
+            header_color="002060",
+            header_text=f"DADOS CONTRATUAIS X REGISTRO CONTÁBIL",
+            header_list=["Descrição","COSIF","Valor Contabilizado","Anexo"],
+            alignments=["center", "center", "center", "center"],  # Alinhamentos específicos por coluna
+            fill_colors=["002060", "002060","002060","002060"],
+            merge_columns=[1, 1, 3, 1],
+            font="Calibri",
+            font_size=10
+        )
+            
+        self._fill_excel_data(workbook,
+                                "Modelo", 
+                                df_quadro, 
+                                text_colors=[None, None, None, "FF0000"], 
+                                bold=[False, False, False, True], 
+                                cell_borders=[True, True, True, True],
+                                cell_alignments=["left", "center", "right", "center"],
+                                columns_to_merge=["Anexo"],
+                                column_types=["texto", "texto", "moeda", "texto"])
+        
+        return workbook
+    
+    def processar_quadro_dois(self, df, contrato):
+
+        df_quadro = df[df["Contrato"]==contrato]
+        
+        df_quadro["Anexo"] = f"B{contrato}"
+        
+        df_quadro.columns = ["Contrato","Ano","COSIF","Valor Líquido Contabilizado","Descrição","Anexo"]
+        df_quadro.fillna("",inplace=True)
+        df_quadro["Valor Líquido Contabilizado"]=df_quadro["Valor Líquido Contabilizado"].apply(DocumentFormatter.format_values)
+        
+        workbook = self._create_excel_model(
+            file_name="Modelo_Com_Linha_Oculta.xlsx",
+            header_color="002060",
+            header_text=f"DEMONSTRAÇÃO DO VALOR ANUAL NO RESULTADO DA SUPERVENIÊNCIA E INSUFICIÊNCIA DE DEPRECIAÇÃO CONTABILIZADOS NO PERÍODO  - CONTRATO {contrato}",
+            header_list=["Ano","COSIF","Descrição","Valor Líquido Contabilizado","Anexo"],
+            alignments=["center", "center", "center", "center","center"],  # Alinhamentos específicos por coluna
+            fill_colors=["002060", "002060","002060","002060","002060"],
+            merge_columns=[1, 1, 1, 2, 1],
+            font="Calibri",
+            font_size=10
+        )
+        df_quadro = df_quadro[["Ano","COSIF","Descrição","Valor Líquido Contabilizado","Anexo"]]
+        
+        self._fill_excel_data(workbook, 
+                                    "Modelo", 
+                                    df_quadro[["Ano","COSIF","Descrição","Valor Líquido Contabilizado","Anexo"]], 
+                                    text_colors=["FF0000", None, None, None, "FF0000"], 
+                                    bold=[True, False, False, False, True], 
+                                    cell_borders=[True, True, True, True, True],
+                                    cell_alignments=["center", "center", "center", "right" , "center"],
+                                    columns_to_merge=["COSIF","Descrição","Anexo"],
+                                    column_types=["texto", "texto", "texto", "moeda", "texto"])
+        
+        return workbook
+    
+    def processar_quadro_tres(self, df, contrato):
+        df_quadro = df[df["Contrato"]==contrato]
+        df_quadro["Anexo"] = f"C{contrato}"
+        rename_cols = {'Saldos Devedores':"SALDOS DEVEDORES", 'Saldos Credores':'SALDOS CREDORES',
+            'Saldo Líquido': 'SALDO LÍQUIDO'}
+        df_quadro = df_quadro.rename(columns=rename_cols)
+        df_quadro["SALDOS DEVEDORES"]=df_quadro["SALDOS DEVEDORES"].apply(DocumentFormatter.format_values)
+        df_quadro["SALDOS CREDORES"]=df_quadro["SALDOS CREDORES"].apply(DocumentFormatter.format_values)
+        df_quadro["SALDO LÍQUIDO"]=df_quadro["SALDO LÍQUIDO"].apply(DocumentFormatter.format_values)
+        
+        workbook = self._create_excel_model(
+            file_name="Modelo_Com_Linha_Oculta.xlsx",
+            header_color="002060",
+            header_text=f"EFEITOS NO RESULTADO CONTÁBIL RELATIVOS AO CONTRATO DE ARRENDAMENTO NÚMERO {contrato}",
+            header_list=["Ano","SALDOS DEVEDORES","SALDOS CREDORES","SALDO LÍQUIDO","Anexo"],
+            alignments=["center", "center", "center", "center","center"], 
+            fill_colors=["002060", "002060","002060","002060","002060"],
+            merge_columns=[1, 1, 1, 1, 1],
+            font="Calibri",
+            font_size=10
+        )
+        
+        self._fill_excel_data(workbook, 
+                                    "Modelo", 
+                                    df_quadro[["Ano","SALDOS DEVEDORES","SALDOS CREDORES","SALDO LÍQUIDO","Anexo"]], 
+                                    text_colors=["FF0000", None, None, None,"FF0000"], 
+                                    bold=[True, False, False, False, True], 
+                                    cell_borders=[True, True, True, True,True],
+                                    cell_alignments=["center", "right", "right" , "right", "center"],
+                                    columns_to_merge=["Anexo"],
+                                    column_types=["texto", "moeda", "moeda", "moeda", "texto"])
+        
+        return workbook
+    
+    def processar_quadro_quatro(self, df, contrato):
+        df_quadro = df[df["Contrato"]==contrato]
+        df_quadro["Anexo"] = f"C{contrato}"
+        rename_cols = {"Receitas": "Receita de Contraprestação - Inclui Superveniência (1)", 'Exclusão':"Exclusão - Recuperção Baixada como Prejuízo (2)","Dedução":"Dedução - Depreciação/Outras Despesas (3)", "Base de Cálculo": "Base de Cálculo (01)-(02)-(03)"}
+        df_quadro = df_quadro.rename(columns=rename_cols)
+        df_quadro = df_quadro.rename(columns=rename_cols)
+        df_quadro["Receita de Contraprestação - Inclui Superveniência (1)"]=df_quadro["Receita de Contraprestação - Inclui Superveniência (1)"].apply(DocumentFormatter.format_values)
+        df_quadro["Exclusão - Recuperção Baixada como Prejuízo (2)"]=df_quadro["Exclusão - Recuperção Baixada como Prejuízo (2)"].apply(DocumentFormatter.format_values)
+        df_quadro["Dedução - Depreciação/Outras Despesas (3)"]=df_quadro["Dedução - Depreciação/Outras Despesas (3)"].apply(DocumentFormatter.format_values)
+        df_quadro["Base de Cálculo (01)-(02)-(03)"]=df_quadro["Base de Cálculo (01)-(02)-(03)"].apply(DocumentFormatter.format_values)
+        
+        workbook = self._create_excel_model(
+            file_name="Modelo_Com_Linha_Oculta.xlsx",
+            header_color="002060",
+            header_text=f"BASE DE CÁLCULO DO PIS E DA COFINS RELATIVO À OPERAÇÃO DO CONTRATO DE ARRENDAMENTO NÚMERO {contrato}",
+            header_list=["Ano","Receita de Contraprestação - Inclui Superveniência (1)","Exclusão - Recuperção Baixada como Prejuízo (2)","Dedução - Depreciação/Outras Despesas (3)","Base de Cálculo (01)-(02)-(03)","Anexo"],
+            alignments=["center", "center", "center", "center","center","center"],  # Alinhamentos específicos por coluna
+            fill_colors=["002060", "002060","002060","002060","002060","002060"],
+            columns_to_merge=[1, 1, 1, 1, 1, 1],
+            font="Calibri",
+            font_size=10
+        )
+        self._fill_excel_data(workbook, 
+                                    "Modelo", 
+                                    df_quadro[["Ano","Receita de Contraprestação - Inclui Superveniência (1)","Exclusão - Recuperção Baixada como Prejuízo (2)","Dedução - Depreciação/Outras Despesas (3)","Base de Cálculo (01)-(02)-(03)","Anexo"]], 
+                                    text_colors=["FF0000", None, None, None,None, "FF0000"], 
+                                    bold=[True, False, False, False, False, True], 
+                                    cell_borders=[True, True, True, True, True,True],
+                                    cell_alignments=["center", "right", "right", "right" , "right", "center"],
+                                    columns_to_merge=["Anexo"],
+                                    column_types=["texto", "moeda", "moeda", "moeda", "moeda", "texto"])
+        
+        return workbook
+    
+    def processar_quadro_cinco(self, df, contrato):
+        df_quadro = df[df["Contrato"]==contrato]
+        df_quadro["Anexo"] = f"C{contrato}"
+        rename_cols = {"Receitas": "Receita de Contraprestação - Não Inclui Superveniência (1)", 'Exclusão':"Exclusão - Recuperção Baixada como Prejuízo (2)","Dedução":"Dedução - Depreciação/Outras Despesas (3)", "Base de Cálculo": "Base de Cálculo (01)-(02)-(03)"}
+        df_quadro = df_quadro.rename(columns=rename_cols)
+        df_quadro["Receita de Contraprestação - Não Inclui Superveniência (1)"]=df_quadro["Receita de Contraprestação - Não Inclui Superveniência (1)"].apply(DocumentFormatter.format_values)
+        df_quadro["Exclusão - Recuperção Baixada como Prejuízo (2)"]=df_quadro["Exclusão - Recuperção Baixada como Prejuízo (2)"].apply(DocumentFormatter.format_values)
+        df_quadro["Dedução - Depreciação/Outras Despesas (3)"]=df_quadro["Dedução - Depreciação/Outras Despesas (3)"].apply(DocumentFormatter.format_values)
+        df_quadro["Base de Cálculo (01)-(02)-(03)"]=df_quadro["Base de Cálculo (01)-(02)-(03)"].apply(DocumentFormatter.format_values)
+
+        workbook = self._create_excel_model(
+            nome_arquivo="Modelo_Com_Linha_Oculta.xlsx",
+            cor_cabecalho1="002060",
+            texto_cabecalho1=f"BASE DE CÁLCULO DO PIS E DA COFINS SEM O EFEITO DA SUPERVENIÊNCIA/INSUFICIÊNCIA DE DEPRECIAÇÃO RELATIVO À OPERAÇÃO DO CONTRATO DE ARRENDAMENTO NÚMERO {contrato}",
+            lista_cabecalho2=["Ano","Receita de Contraprestação - Não Inclui Superveniência (1)","Exclusão - Recuperção Baixada como Prejuízo (2)","Dedução - Depreciação/Outras Despesas (3)", "Base de Cálculo (01)-(02)-(03)","Anexo"],
+            alinhamentos=["center", "center", "center", "center","center","center"],  # Alinhamentos específicos por coluna
+            cores_preenchimento=["002060", "002060","002060","002060","002060","002060"],
+            colunas_merge=[1, 1, 1, 1, 1, 1],
+            fonte="Calibri",
+            tamanho_fonte=10
+        )
+        self._fill_excel_data(workbook, 
+                                    "Modelo", 
+                                    df_quadro[["Ano","Receita de Contraprestação - Não Inclui Superveniência (1)","Exclusão - Recuperção Baixada como Prejuízo (2)","Dedução - Depreciação/Outras Despesas (3)", "Base de Cálculo (01)-(02)-(03)","Anexo"]], 
+                                    text_colors=["FF0000", None, None, None,None, "FF0000"], 
+                                    bold=[True, False, False, False, False, True], 
+                                    cell_borders=[True, True, True, True, True,True],
+                                    cell_alignments=["center", "right", "right", "right" , "right", "center"],
+                                    columns_to_merge=["Anexo"],
+                                    column_types=["texto", "moeda", "moeda", "moeda", "moeda", "texto"])
+        
+        return workbook 
+    
+    def processar_quadro_seis(self, df, contrato):
+        df_quadro = df[df["Contrato"]==contrato]
+        df_quadro["Anexo"] = f"C{contrato}"
+        rename_cols = {"Base Q4": "Base Com Efeito da Superveniência/Insuficiência", 'Base Q5':"Base Sem Efeito da Superveniência/Insuficiência"}
+        df_quadro = df_quadro.rename(columns=rename_cols)
+        df_quadro["Base Com Efeito da Superveniência/Insuficiência"]=df_quadro["Base Com Efeito da Superveniência/Insuficiência"].apply(DocumentFormatter.format_values)
+        df_quadro["Base Sem Efeito da Superveniência/Insuficiência"]=df_quadro["Base Sem Efeito da Superveniência/Insuficiência"].apply(DocumentFormatter.format_values)
+        df_quadro["Diferença"]=df_quadro["Diferença"].apply(DocumentFormatter.format_values)
+
+        workbook = self._create_excel_model(
+            nome_arquivo="Modelo_Com_Linha_Oculta.xlsx",
+            cor_cabecalho1="002060",
+            texto_cabecalho1=f"COMPARATIVO ENTRE A BASE DE CÁLCULO DO PIS E DA COFINS COM E SEM O EFEITO DA SUPERVENIÊNCIA/INSUFICIÊNCIA DE DEPRECIAÇÃO RELATIVO À OPERAÇÃO DO CONTRATO DE ARRENDAMENTO NÚMERO {contrato}",
+            lista_cabecalho2=["Ano","Base Com Efeito da Superveniência/Insuficiência","Base Sem Efeito da Superveniência/Insuficiência","Diferença","Anexo"],
+            alinhamentos=["center", "center", "center", "center","center"],  # Alinhamentos específicos por coluna
+            cores_preenchimento=["002060", "002060","002060","002060","002060"],
+            colunas_merge=[1, 1, 1, 1, 1],
+            fonte="Calibri",
+            tamanho_fonte=10
+        )
+
+        self._fill_excel_data(workbook, 
+                                    "Modelo", 
+                                    df_quadro[["Ano","Base Com Efeito da Superveniência/Insuficiência","Base Sem Efeito da Superveniência/Insuficiência","Diferença","Anexo"]], 
+                                    text_colors=["FF0000", None, None, None,None, "FF0000"], 
+                                    bold=[True, False, False, False, False, True], 
+                                    cell_borders=[True, True, True, True, True,True],
+                                    cell_alignments=["center", "right", "right", "right" , "right", "center"],
+                                    columns_to_merge=["Anexo"],
+                                    column_types=["texto", "moeda", "moeda", "moeda", "moeda", "texto"])
+        
+        return workbook
+    
+    def criar_folha_rosto(self, contrato
+                     , df_quadro_zero
+                     , comparativo
+                     , caminho_destino
+                     , df_quadro_um
+                     , df_quadro_dois
+                     , df_quadro_tres
+                     , df_quadro_quatro
+                     , df_quadro_cinco
+                     , df_quadro_seis
+                     , caminho_base
+                     , replace=False ):
+    
+        nome_final = f"RESUMO_{contrato}.xlsx"
+
+        if not replace and os.path.isfile(Path.joinpath(caminho_destino,nome_final)):
+            return
+        os.makedirs(caminho_destino,exist_ok=True)
+        
+        wb_resumo = self.processar_quadro_zero(df_quadro_zero, STATUS_COLS, contrato, comparativo)
+        wb_quadro_um = self.processar_quadro_um(df_quadro_um, contrato)
+        wb_quadro_dois = self.processar_quadro_dois(df_quadro_dois, contrato)
+        wb_quadro_tres = self.processar_quadro_tres(df_quadro_tres, contrato)
+        wb_quadro_quatro = self.processar_quadro_quatro(df_quadro_quatro, contrato)
+        wb_quadro_cinco = self.processar_quadro_cinco(df_quadro_cinco, contrato)
+        wb_quadro_seis = self.processar_quadro_seis(df_quadro_seis, contrato)
+        
+        self._consolidate_workbooks_to_xlsx(
+            lista_wb=[wb_resumo, 
+                        wb_quadro_um,
+                        wb_quadro_dois,
+                        wb_quadro_tres,
+                        wb_quadro_quatro,
+                        wb_quadro_cinco,
+                        wb_quadro_seis
+                        ],
+            path_arquivo_base=caminho_base,
+            destino=caminho_destino,
+            nome_novo=nome_final,
+            celula_inicial="D9"
+        )
+
+    def safe_criar_folha_rosto(self, contrato, df_base_contrato, comparativo, caminho_destino,
+                            df_quadro_um,
+                            df_quadro_dois,
+                            df_quadro_tres,
+                            df_quadro_quatro,
+                            df_quadro_cinco,
+                            df_quadro_seis,
+                            caminho_base,
+                            replace):
+        try:
+            self.criar_folha_rosto(contrato,
+                            df_base_contrato,
+                            comparativo,
+                            caminho_destino,
+                            df_quadro_um,
+                            df_quadro_dois,
+                            df_quadro_tres,
+                            df_quadro_quatro,
+                            df_quadro_cinco,
+                            df_quadro_seis,
+                            caminho_base,
+                            replace)
+        except Exception as e:
+            # imprime nome do grupo, mensagem de erro e traceback completo
+            print(f"[ERRO] no grupo {contrato}: {e}", file=sys.stderr)
+            #traceback.print_exc()
