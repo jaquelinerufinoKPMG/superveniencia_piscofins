@@ -6,6 +6,7 @@
 	],
 	"settings": {
 		"editor.formatOnSave": true,
-		"python.pythonPath": ".venv\\Scripts\\python.exe"
+		"python.pythonPath": ".venv\\Scripts\\python.exe",
+		"chatgpt.openOnStartup": false
 	}
 }

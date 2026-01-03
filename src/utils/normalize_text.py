@@ -1,10 +1,11 @@
 import pandas as pd
 import locale
 
+
 class DocumentFormatter:
     def __init__(self):
         pass
-        
+
     def format_documents(cpf_cnpj: str) -> str:
         if pd.isnull(cpf_cnpj):
             return cpf_cnpj
@@ -24,7 +25,6 @@ class DocumentFormatter:
 
         return cpf_cnpj  # Retorna o valor original se não for possível formatar
 
-
     def format_date_columns(df: pd.DataFrame, date_columns: list[str]):
         for col in date_columns:
             if col in df.columns:
@@ -39,7 +39,6 @@ class DocumentFormatter:
             else:
                 print(f"Warning: Column '{col}' does not exist in the DataFrame.")
         return df
-
 
     def format_values(amount, format_as_currency=False):
 
@@ -74,26 +73,25 @@ class DocumentFormatter:
             return formatted_value if format_as_currency else amount_as_float
         except Exception as e:
             # print(f"Erro ao formatar o valor '{valor}': {e}")
-            return amount
-
+            return amount.round(2) if isinstance(amount, (int, float)) else amount
 
     def to_pascal_case(text_input: str) -> str:
         if pd.isnull(text_input):
             return text_input
         return " ".join(word.capitalize() for word in text_input.split(" "))
-    
+
     def correct_year(data):
         if pd.isnull(data):
             return data
         try:
-            partes = data.split('/')
+            partes = data.split("/")
             if len(partes) == 3:
                 dia, mes, ano = partes
                 if len(ano) == 2:
                     if int(ano) > 40:
-                        ano_corrigido = '19' + ano
+                        ano_corrigido = "19" + ano
                     else:
-                        ano_corrigido = '20' + ano
+                        ano_corrigido = "20" + ano
                     return f"{dia}/{mes}/{ano_corrigido}"
             return data
         except Exception:
