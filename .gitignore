@@ -181,3 +181,6 @@ cython_debug/
 .cursorindexingignore
 
 data/
+Input/
+Output/
+PRONTO/

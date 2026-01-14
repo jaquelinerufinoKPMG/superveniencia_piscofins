@@ -1,118 +1,121 @@
 import os
-import re
 import shutil
 import threading
-from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
-from PyPDF2 import PdfReader
 from pathlib import Path
-from tqdm import tqdm
+
 import pandas as pd
+from PyPDF2 import PdfReader
+from tqdm import tqdm
+
 import win32com.client as win32
 import win32com
+
 from dotenv import find_dotenv
 from environs import Env
 
+
+# ================== CONFIG ==================
 env = Env()
 env.read_env(find_dotenv())
 
-OUTPUT_DIRECTORY = env('output_dir')
-INVALID_DIRECTORY = env('invalid_dir')
-WORKSHEET_NAME = env('anexo_c_worksheet_name', 'PIS_COFINS_ANUAL')
+OUTPUT_DIRECTORY = env("output_dir")
+INVALID_DIRECTORY = env("invalid_dir")
+WORKSHEET_NAME = env("anexo_c_worksheet_name", "PIS_COFINS_ANUAL")
 THREAD_LIMIT = 30
+# ============================================
+
 
 class export_pdf:
-    def _init__(self):
+    def __init__(self):
         pass
 
+    # ---------- VALIDAÇÃO DOS EXCEL ----------
     def _check_excel_files(self, excel_file, invalid_directory):
         p = Path(excel_file)
 
-        # 1) Ignora qualquer coisa que não seja arquivo
         if not p.is_file():
             return
 
-        # 2) Processa só Excel
         if p.suffix.lower() not in {".xlsx", ".xls", ".xlsm"}:
             return
 
         file_name = p.stem[1:].lstrip("0")
 
         try:
-            # 3) Garante fechamento correto do Excel (importantíssimo em threads)
             with pd.ExcelFile(p, engine="openpyxl") as xls:
                 df = pd.read_excel(
                     xls,
                     header=None,
                     dtype=str,
-                    sheet_name="PIS_COFINS_ANUAL"
+                    sheet_name=WORKSHEET_NAME
                 )
-
         except Exception:
-            # Qualquer erro de leitura = inválido
-            output_dir = Path(invalid_directory)
-            output_dir.mkdir(parents=True, exist_ok=True)
-            shutil.move(p, output_dir / p.name)
+            Path(invalid_directory).mkdir(parents=True, exist_ok=True)
+            shutil.move(str(p), str(Path(invalid_directory) / p.name))
             return
 
-        # 4) Validação de conteúdo
-        if str(df.iloc[1, 2]) != file_name and str(df.iloc[0, 2]) != file_name:
-            output_dir = Path(invalid_directory)
-            output_dir.mkdir(parents=True, exist_ok=True)
-            shutil.move(p, output_dir / p.name)
+        try:
+            if str(df.iloc[1, 2]) != file_name and str(df.iloc[0, 2]) != file_name:
+                Path(invalid_directory).mkdir(parents=True, exist_ok=True)
+                shutil.move(str(p), str(Path(invalid_directory) / p.name))
+        except Exception:
+            Path(invalid_directory).mkdir(parents=True, exist_ok=True)
+            shutil.move(str(p), str(Path(invalid_directory) / p.name))
 
-
+    # ---------- RENOMEIA ----------
     def _rename_files(self, directory_path):
         for file in os.listdir(directory_path):
-            if '.' in file:
-                file_name, ext = file.split('.', 1)
-                letter = file_name[0]
-                numbers = file_name[1:].zfill(7)
-                new_name = f"{letter}{numbers}.{ext}"
-                try:
-                    os.rename(os.path.join(directory_path, file), os.path.join(directory_path, new_name))
-                except Exception as e:
-                    pass
+            if "." not in file:
+                continue
 
-    def _empty_row(self, worksheet, row_index):
-        if worksheet.row_dimensions[row_index].hidden:
-            for c in range(1, worksheet.max_column + 1):
-                worksheet.cell(row=row_index, column=c).value = None
-            return True
-        return all(worksheet.cell(row=row_index, column=c).value in [None, 0, 0.0] for c in range(1, worksheet.max_column + 1))
+            name, ext = file.split(".", 1)
+            if not name:
+                continue
 
-    def _empty_col(self, worksheet, col_index):
-        if worksheet.column_dimensions[get_column_letter(col_index)].hidden:
-            return True
-        return all(worksheet.cell(row=r, column=col_index).value in [None, 0, 0.0] for r in range(1, worksheet.max_row + 1))
+            letter = name[0]
+            numbers = name[1:].zfill(7)
+            new_name = f"{letter}{numbers}.{ext}"
 
+            try:
+                os.rename(
+                    os.path.join(directory_path, file),
+                    os.path.join(directory_path, new_name)
+                )
+            except Exception:
+                pass
+
+    # ---------- PDF JÁ EXISTE ----------
     def _check_pdf(self, input_file):
         output_file = os.path.splitext(input_file)[0] + ".pdf"
-        if os.path.isfile(output_file):
-            try:
-                with open(output_file, 'rb') as f:
-                    pdf = PdfReader(f)
-                    return len(pdf.pages) == 1
-            except:
-                return False
-        return False
+        if not os.path.isfile(output_file):
+            return False
 
+        try:
+            with open(output_file, "rb") as f:
+                return len(PdfReader(f).pages) == 1
+        except Exception:
+            return False
+
+    # ---------- EXPORTA PDF (SEM MEXER EM VALORES) ----------
     def _export_pdf(self, input_file):
-        # Evita gencache (que te deu dor de cabeça com gen_py)
         excel = win32.Dispatch("Excel.Application")
         excel.Visible = False
         excel.DisplayAlerts = False
 
-        output_file = os.path.splitext(input_file)[0] + ".pdf"
+        # garante separadores do sistema (pt-BR)
+        excel.UseSystemSeparators = True
 
+        output_file = os.path.splitext(input_file)[0] + ".pdf"
         wb = None
+
         try:
             wb = excel.Workbooks.Open(os.path.abspath(input_file))
-            ws = wb.Worksheets(WORKSHEET_NAME)  # usa a aba certa
+            ws = wb.Worksheets(WORKSHEET_NAME)
 
             last_column = ws.UsedRange.Columns.Count
             last_row = 1
 
+            # última linha relevante (pela borda)
             for row in range(1, ws.UsedRange.Rows.Count + 1):
                 borders = ws.Cells(row, 4).Borders
                 for i in range(5, 13):
@@ -120,6 +123,7 @@ class export_pdf:
                         last_row = row
                         break
 
+            # última coluna relevante (pela borda)
             for col in range(1, ws.UsedRange.Columns.Count + 1):
                 borders = ws.Cells(5, col).Borders
                 for i in range(5, 13):
@@ -128,15 +132,19 @@ class export_pdf:
                         break
 
             def col_letra(i):
-                letra = ''
-                while i > 0:
+                s = ""
+                while i:
                     i, r = divmod(i - 1, 26)
-                    letra = chr(65 + r) + letra
-                return letra
+                    s = chr(65 + r) + s
+                return s
 
             rng = ws.Range(f"B1:{col_letra(last_column)}{last_row}")
 
-            # --- page setup "resize" ---
+            # ===== ÚNICO FIX APLICADO =====
+            # NÃO altera valor, formato ou casas decimais
+            rng.EntireColumn.AutoFit()
+            # ==============================
+
             ws.PageSetup.PrintArea = rng.Address
             ws.DisplayPageBreaks = False
             ws.ResetAllPageBreaks()
@@ -146,15 +154,15 @@ class export_pdf:
             ps.FitToPagesWide = 1
             ps.FitToPagesTall = 1
 
-            ps.Orientation = 1  # 1=Portrait
-            ps.PaperSize = 9    # 8=A3 (use 9=A4 se quiser tentar)
-            ps.LeftMargin   = excel.InchesToPoints(0.15)
-            ps.RightMargin  = excel.InchesToPoints(0.15)
-            ps.TopMargin    = excel.InchesToPoints(0.15)
+            ps.Orientation = 1  # Portrait (como estava)
+            ps.PaperSize = 9    # A4
+
+            ps.LeftMargin = excel.InchesToPoints(0.15)
+            ps.RightMargin = excel.InchesToPoints(0.15)
+            ps.TopMargin = excel.InchesToPoints(0.15)
             ps.BottomMargin = excel.InchesToPoints(0.15)
             ps.CenterHorizontally = True
 
-            # Exporta SÓ a worksheet respeitando PrintArea
             ws.ExportAsFixedFormat(
                 Type=0,
                 Filename=os.path.abspath(output_file),
@@ -163,40 +171,59 @@ class export_pdf:
             )
 
         finally:
-            if wb is not None:
+            if wb:
                 wb.Close(False)
             excel.Quit()
 
+    # ---------- PROCESSO PRINCIPAL ----------
     def process_file(self):
-        shutil.rmtree(os.path.join(win32com.__gen_path__), ignore_errors=True)
-        
+        try:
+            shutil.rmtree(win32com.__gen_path__, ignore_errors=True)
+        except Exception:
+            pass
+
         os.makedirs(INVALID_DIRECTORY, exist_ok=True)
-        
+
         arquivos = os.listdir(OUTPUT_DIRECTORY)
         threads = []
+
         print("Verificando arquivos inválidos...")
-        for idx, arquivo in enumerate(tqdm(arquivos, desc="Verificando")):
+        for idx, arquivo in enumerate(tqdm(arquivos)):
             if arquivo.endswith(".pdf"):
                 continue
+
             path = os.path.join(OUTPUT_DIRECTORY, arquivo)
-            t = threading.Thread(target=self._check_excel_files, args=(path, INVALID_DIRECTORY))
+
+            t = threading.Thread(
+                target=self._check_excel_files,
+                args=(path, INVALID_DIRECTORY)
+            )
             t.start()
             threads.append(t)
+
             if len(threads) >= THREAD_LIMIT or idx == len(arquivos) - 1:
                 for t in threads:
                     t.join()
                 threads = []
-                
+
         print("Renomeando arquivos...")
         self._rename_files(OUTPUT_DIRECTORY)
-        
+
         print("Convertendo para PDF...")
-        arquivos = sorted(
-            [f for f in os.listdir(OUTPUT_DIRECTORY) if f.endswith(".xlsx") and not self._check_pdf(os.path.join(OUTPUT_DIRECTORY, f))]
-        )
-        for arquivo in tqdm(arquivos, desc="Convertendo"):
+        arquivos = sorted([
+            f for f in os.listdir(OUTPUT_DIRECTORY)
+            if f.endswith(".xlsx")
+            and not self._check_pdf(os.path.join(OUTPUT_DIRECTORY, f))
+        ])
+
+        for arquivo in tqdm(arquivos):
             try:
-                self._export_pdf(os.path.abspath(os.path.join(OUTPUT_DIRECTORY, arquivo)))
+                self._export_pdf(os.path.join(OUTPUT_DIRECTORY, arquivo))
             except Exception as e:
                 print(f"Erro ao converter {arquivo}: {e}")
+
         print("✅ Processo finalizado.")
+
+
+if __name__ == "__main__":
+    export_pdf().process_file()
