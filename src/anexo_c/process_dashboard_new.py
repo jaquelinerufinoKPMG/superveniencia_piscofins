@@ -4,106 +4,136 @@ import xlwings as xw
 import re
 import os
 from itertools import product
+from dotenv import find_dotenv
+from environs import Env
 
-AGRUPAMENTO_COLS = ["Ano", "Conta_Nome", "Cosif_Nome"]
-AGRUPAMENTO_VALUES = ["ValorDebito", "ValorCredito", "Movimentacao"]
+env = Env()
+env.read_env(find_dotenv())
+
+AGRUPAMENTO_COLS = ["Ano","Conta_Nome","Cosif_Nome"]
+AGRUPAMENTO_VALUES = ["ValorDebito","ValorCredito","Movimentacao"]
 DESC_COL = "Descrição"
 ANOMES_COL = "AnoMes"
 COL_VALOR = "Movimentacao"
 ANO_COL = "Ano"
-
+DESC_TOTAL_IRPJ = "Resultado antes do IR"
+DESC_LALUR_ADICAO = "Adição"
+DESC_LALUR_ADICAO = "Exclusão"
+# descricao_exclusao = env("anexo_c_desc_exclusao")
+# descricao_deducao = env("anexo_c_desc_deducao")
+# taxa_pis = env.float("anexo_c_taxa_pis")
+# taxa_cofins = env.float("anexo_c_taxa_cofins")
 
 class process_dashboard:
-    def __init__(self, tax_cols: dict[str, list[str]], template_path: str):
-        self.template_path = template_path
-        self.tax_cols = tax_cols
-        pass
-
-    def group_revenues(
-        self,
-        df: pd.DataFrame,
-        tax_filters: dict[str, list],
-        pivot_section: str,
-        description: str,
-        section_col: str = "Tributo",  # nome da coluna que identifica IRPJ/CS
-        ) -> pd.DataFrame:
+    def __init__(self, tax_filters: dict[str, list[str]]):
         """
-        tax_filters:
-        {"PIS": [...]}
-        ou {"IRPJ": [...], "CS": [...]}
-
-        pivot_section:
-        "IRPJ" ou "CS" (carimbo para a pivot)
-
-        description:
-        texto da linha/bloco, ex: "Resultado antes do IR"
+        tax_filters exemplo:
+          {"PIS": ["RAIR", "Exclusão", "Adição"]}
+        ou
+          {"IRPJ": ["RAIR", "Exclusão", "Adição"], "CS": ["RAIR", "Exclusão", "Adição"]}
         """
+        self.tax_filters = tax_filters
+        self.tax_cols = list(tax_filters.keys())  # <-- aqui você "sabe" se é PIS ou IRPJ+CS
 
-        cols = list(tax_filters.keys())
+        self.template_path = env("anexo_c_template_path")
+        self.descricao_total = env("anexo_c_desc_total")
+        self.descricao_exclusao = env("anexo_c_desc_exclusao")
+        self.descricao_deducao = env("anexo_c_desc_deducao")
+        self.taxa_pis = env.float("anexo_c_taxa_pis")
+        self.taxa_cofins = env.float("anexo_c_taxa_cofins")
+
+    def _tax_mask(self, df: pd.DataFrame) -> pd.Series:
+        """
+        Retorna máscara booleana usando self.tax_filters.
+        - 1 coluna: df[col].isin(lista)
+        - 2+ colunas: compara tuplas (produto cartesiano das listas)
+        """
+        if not self.tax_cols:
+            raise ValueError("self.tax_filters está vazio. Passe ao menos 1 filtro.")
 
         # valida colunas
-        missing = [c for c in cols if c not in df.columns]
+        missing = [c for c in self.tax_cols if c not in df.columns]
         if missing:
             raise KeyError(f"Colunas de filtro não existem no df: {missing}")
 
-        # monta máscara
-        if len(cols) == 1:
-            col = cols[0]
-            mask = df[col].isin(tax_filters[col])
-        else:
-            allowed_lists = [tax_filters[c] for c in cols]
-            allowed_tuples = set(product(*allowed_lists))
-            mask = df[cols].apply(tuple, axis=1).isin(allowed_tuples)
+        # caso 1: só uma coluna (PIS)
+        if len(self.tax_cols) == 1:
+            col = self.tax_cols[0]
+            allowed = self.tax_filters[col]
+            return df[col].isin(allowed)
 
-        sub = df.loc[mask].copy()
+        # caso 2: múltiplas colunas (IRPJ + CS, etc) -> tuplas
+        allowed_lists = [self.tax_filters[c] for c in self.tax_cols]
+        allowed_tuples = set(product(*allowed_lists))  # todas as combinações permitidas
 
-        # carimba seção e descrição
-        sub[section_col] = pivot_section + " " + description
+        return df[self.tax_cols].apply(tuple, axis=1).isin(allowed_tuples)
+
+    def group_revenues(
+        self, df: pd.DataFrame, revenue_filter: list, description: str
+    ) -> pd.DataFrame:
+        """
+        Aqui você filtra por:
+        - tax_filters (PIS ou IRPJ/CS via tupla)
+        - E também pelo revenue_filter (que imagino ser algo dentro do seu agrupamento, depende do seu layout)
+        
+        Importante: no seu código original revenue_filter filtrava em df[self.tax_col].
+        Agora, como tax_col virou dict, revenue_filter NÃO pode mais ser aplicado assim
+        (a não ser que você realmente queira filtrar em UMA das tax_cols).
+        
+        Então: vou interpretar revenue_filter como "refinar dentro das tax_cols":
+          - se 1 coluna: aplica isin(revenue_filter)
+          - se 2+: aplica por tupla também (produto cartesiano do revenue_filter em todas)
+        
+        Se revenue_filter não for isso, me fala qual coluna ele deveria filtrar.
+        """
+
+        sub = df[self._tax_mask(df)].copy()
+
+        # refinamento opcional por revenue_filter, seguindo a MESMA lógica:
+        if revenue_filter:
+            if len(self.tax_cols) == 1:
+                col = self.tax_cols[0]
+                sub = sub[sub[col].isin(revenue_filter)]
+            else:
+                # aqui assumo que revenue_filter é lista do MESMO conjunto pra todas as tax_cols
+                # se você quiser filtros diferentes por coluna, o certo é passar via tax_filters.
+                allowed_tuples = set(product(*([revenue_filter] * len(self.tax_cols))))
+                sub = sub[sub[self.tax_cols].apply(tuple, axis=1).isin(allowed_tuples)]
+
+        sub = sub.groupby(AGRUPAMENTO_COLS, as_index=False)[
+            AGRUPAMENTO_VALUES
+        ].sum()
+
         sub[DESC_COL] = description
-
-        # agrupa (IMPORTANTE: inclui section_col no groupby pra não misturar IRPJ/CS)
-        group_keys = list(AGRUPAMENTO_COLS) + [section_col, DESC_COL]
-        sub = sub.groupby(group_keys, as_index=False)[AGRUPAMENTO_VALUES].sum()
-
         return sub
 
     def replicate_years(
         self,
         df: pd.DataFrame,
+        group_cols: list = None,
+        value_cols: list = None,
         fill_value: float = 0,
-        tax_cols: list[str] | str | None = None,  # <-- novo
     ) -> pd.DataFrame:
-
-        VALUE_COLS = ["ValorDebito", "ValorCredito", "Movimentacao"]
-        GROUP_COLS = ["Conta_Nome", "Cosif_Nome"]
-        # 1) extrai Ano de AnoMes
         df = df.copy()
+
+        # 1) extrai Ano de AnoMes
         df.loc[:, ANO_COL] = df[ANOMES_COL] // 100
 
         # 2) checa parâmetros
-        if GROUP_COLS is None or VALUE_COLS is None:
+        if group_cols is None or value_cols is None:
             raise ValueError(
                 "Passe group_cols, ex: ['Conta_Nome','Cosif_Nome'] "
                 "e value_cols, ex: ['ValorDebito','ValorCredito','Movimentacao']"
             )
 
-        # 2.1) resolve tax_cols
-        if tax_cols is None:
-            # mantém compatibilidade com seu tax_col antigo
-            tax_cols = getattr("tax_cols", None) or getattr("tax_col", None)
-            if tax_cols is None:
-                raise ValueError(
-                    "Informe tax_cols (ex: ['IRPJ','CS']) ou defina tax_cols/tax_col."
-                )
-
-        if isinstance(tax_cols, str):
-            tax_cols = [tax_cols]
-
         # 3) intervalo de anos
         years = list(range(int(df[ANO_COL].min()), int(df[ANO_COL].max()) + 1))
 
-        # 4) pega todas as combinações únicas de (IRPJ, CS, ...) + detalhes
-        key_cols = tax_cols + GROUP_COLS
+        # (opcional) se você quer expandir anos só dentro do recorte permitido pelos filtros:
+        df = df[self._tax_mask(df)].copy()
+
+        # 4) pega todas as combinações únicas de (tax_cols) + detalhes
+        key_cols = self.tax_cols + group_cols
         groups = df[key_cols].drop_duplicates().reset_index(drop=True)
 
         # 5) gera DataFrame de anos
@@ -115,13 +145,13 @@ class process_dashboard:
         full = groups.merge(years_df, on="key").drop("key", axis=1)
 
         # 7) agrega seu df original somando duplicatas
-        df_agg = df.groupby(key_cols + [ANO_COL], as_index=False)[VALUE_COLS].sum()
+        df_agg = df.groupby(key_cols + [ANO_COL], as_index=False)[value_cols].sum()
 
-        # 8) faz o merge pra “expandir” os anos faltantes
+        # 8) merge pra expandir anos faltantes
         df_full = full.merge(df_agg, on=key_cols + [ANO_COL], how="left")
 
-        # 9) preenche zeros (ou outro fill_value)
-        df_full[VALUE_COLS] = df_full[VALUE_COLS].fillna(fill_value)
+        # 9) preenche zeros
+        df_full[value_cols] = df_full[value_cols].fillna(fill_value)
 
         return df_full
 
@@ -134,7 +164,9 @@ class process_dashboard:
         TAXA_COFINS = 0.04
 
         # 1) soma por Ano e Descrição
-        df_agg = df.groupby([ANO_COL, DESC_COL], as_index=False)[COL_VALOR].sum()
+        df_agg = df.groupby([ANO_COL, DESC_COL], as_index=False)[
+            COL_VALOR
+        ].sum()
 
         # 2) pivot das descrições
         df_pivot = df_agg.pivot_table(
@@ -147,7 +179,8 @@ class process_dashboard:
 
         # 3) base de cálculo
         df_pivot["Base de Cálculo"] = (
-            df_pivot.get(DESCRICAO_TOTAL, 0) - df_pivot.get(DESCRICAO_EXCLUSAO, 0)
+            df_pivot.get(DESCRICAO_TOTAL, 0)
+            - df_pivot.get(DESCRICAO_EXCLUSAO, 0)
         ) + df_pivot.get(DESCRICAO_DEDUCAO, 0)
 
         # 4) cálculos de PIS e Cofins
@@ -193,83 +226,6 @@ class process_dashboard:
 
         return final
 
-    def calcula_csll(self, df: pd.DataFrame) -> pd.DataFrame:
-        # máscara das linhas que precisam ser duplicadas
-        mask = df[DESC_COL].astype(str).str.contains("Resultado antes do", na=False)
-
-        # copia só essas linhas
-        df_dup = df.loc[mask].copy()
-
-        # altera a coluna Tributo na cópia
-        df_dup["Tributo"] = df_dup["Tributo"].astype(str) + " - Total"
-
-        # concatena de volta
-        df = pd.concat([df, df_dup], ignore_index=True)
-
-        mask_remover = (
-            df[DESC_COL].astype(str).str.contains("Resultado antes do", na=False)
-            & df["Conta_Nome"].astype(str).str.startswith("8", na=False)
-            & ~df["Tributo"].str.contains(" - Total", na=False)
-        )
-
-        df = df[~mask_remover].copy()
-
-        df_agg = df.groupby([ANO_COL, "Tributo"], as_index=False)[COL_VALOR].sum()
-
-        df_pivot = df_agg.pivot_table(
-            index=[ANO_COL],
-            columns="Tributo",
-            values=COL_VALOR,
-            aggfunc="sum",
-            fill_value=0,
-        ).reset_index()
-
-        total_row = df_pivot.drop(columns=[ANO_COL]).sum(numeric_only=True)
-        total_row[ANO_COL] = "Grand Total"
-
-        # 2) adiciona no final
-        df_pivot = pd.concat([df_pivot, total_row.to_frame().T], ignore_index=True)
-
-        df_pivot["LALUR"] = -df_pivot.get("IRPJ Adição", 0) - df_pivot.get(
-            "IRPJ Exclusão", 0
-        )
-        df_pivot["Base de cálculo - IR"] = df_pivot.get(
-            "IRPJ Resultado antes do IR - Total", 0
-        ) + df_pivot.get("LALUR", 0)
-        df_pivot["LACS"] = -df_pivot.get("CSLL Adição", 0) - df_pivot.get(
-            "CSLL Exclusão", 0
-        )
-        df_pivot["Base de cálculo - CSLL"] = df_pivot.get(
-            "CSLL Resultado antes do CSLL - Total", 0
-        ) + df_pivot.get("LACS", 0)
-        df_pivot["Diferença na Base de Cálculo entre IR e CS"] = df_pivot.get(
-            "Base de cálculo - IR", 0
-        ) + df_pivot.get("Base de cálculo - CSLL", 0)
-        cols = df.columns
-        cols = cols.drop(["Ano", "Tributo", "Movimentacao"]).tolist()
-
-        df_long = df_pivot.melt(
-            id_vars=[ANO_COL],
-            value_vars=[
-                "LALUR",
-                "Base de cálculo - IR",
-                "LACS",
-                "Base de cálculo - CSLL",
-                "Diferença na Base de Cálculo entre IR e CS",
-            ],
-            var_name="Tributo",
-            value_name=COL_VALOR,
-        )
-
-        df_long[cols] = np.nan
-
-        df_final = pd.concat([df, df_long])
-        df_final["Descrição"] = np.where(
-            df_final["Descrição"].isna(), df_final["Tributo"], df_final["Descrição"]
-        )
-
-        return df_final
-
     def x(self, file_path, file_name):
         pattern = re.compile(r"\d+")
 
@@ -295,7 +251,6 @@ class process_dashboard:
         table_index: int = 1,
         contract_cell: str = "C2",
         start_row_hide: int = 8,
-        new_pivot_name: str = "PIS_COFINS_ANUAL"
     ):
         """
         Abre o template de Excel com PivotTables, injeta o DataFrame na Tabela,

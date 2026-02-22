@@ -10,17 +10,15 @@ from tqdm import tqdm
 import win32com.client as win32
 import win32com
 
-from dotenv import find_dotenv
-from environs import Env
+from dotenv import load_dotenv
 
 
 # ================== CONFIG ==================
-env = Env()
-env.read_env(find_dotenv())
+load_dotenv()
 
-OUTPUT_DIRECTORY = env("output_dir")
-INVALID_DIRECTORY = env("invalid_dir")
-WORKSHEET_NAME = env("anexo_c_worksheet_name", "PIS_COFINS_ANUAL")
+OUTPUT_DIRECTORY = os.getenv("output_dir")
+INVALID_DIRECTORY = os.getenv("invalid_dir")
+WORKSHEET_NAME = os.getenv("anexo_c_worksheet_name", "PIS_COFINS_ANUAL")
 THREAD_LIMIT = 30
 # ============================================
 
