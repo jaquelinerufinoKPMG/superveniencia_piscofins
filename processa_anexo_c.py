@@ -16,7 +16,7 @@ from tqdm.auto import tqdm
 # %%
 load_dotenv()
 
-DASHBOARD_CSV = r"docs\Diligencia_Contratos.csv"
+DASHBOARD_CSV = r"data\input\Diligencia_Contratos.csv"
 TEMPLATE_PATH = r"docs\template_csll.xlsx"
 TAX_FILTERS = {
     "IRPJ": ["RAIR", "Exclusão", "Adição"],
