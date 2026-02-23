@@ -54,13 +54,14 @@ CONFIGS = [
 dashboard = pd.read_csv(DASHBOARD_CSV, sep=';', encoding='latin1')
 
 # %%
-contratos_to_process = set()
-if os.path.isfile("processar_kpmg.txt"):
-    with open("processar_kpmg.txt", "r") as f:
-        contratos_to_process = set(line.strip() for line in f)
+contratos = dashboard['NumContrato'].unique().tolist()
+contratos_selecionados = pd.read_excel(r"docs\contratos_com_erro.xlsx")['arquivo'].str.replace(".xlsx", "").str.replace("C","").astype(int).sort_values().tolist()
+contratos_to_process = [c for c in contratos if c in contratos_selecionados]
 
 # %%
 cls = process_dashboard(TAX_FILTERS, TEMPLATE_PATH)
+
+# %%
 cls.get_contract_numbers(OUTPUT_DIR)
 
 # %%
@@ -69,6 +70,9 @@ if os.path.isfile("numeros_extraidos.txt"):
     with open("numeros_extraidos.txt", "r") as f:
         nao_encontrados_3 = set(line.strip() for line in f)
 
+
+# %%
+
 # Filtre os contratos removendo aqueles que estão na lista de não encontrados
 contratos = [
     int(contrato)
@@ -76,7 +80,10 @@ contratos = [
     if str(contrato) not in nao_encontrados_3
 ]
 
-for contrato in tqdm(contratos, unit="contrato"):
+
+# %%
+final_final = pd.DataFrame()
+for contrato in tqdm(contratos, unit=" contrato"):
     tqdm.desc = f"processando contrato: {contrato}"
     dashboard_filtrado = dashboard[dashboard["NumContrato"] == contrato]
 
@@ -91,16 +98,17 @@ for contrato in tqdm(contratos, unit="contrato"):
         final = pd.concat([final, bloco], ignore_index=True)
 
     final = cls.calcula_csll(final)
-
     df = final.copy()
+    df['NumContrato'] = contrato
+    final_final = pd.concat([final_final, df])
+    
+    # num_str = str(contrato)
+    # num_str = num_str.zfill(7)      # completa com zeros à esquerda
+    # output_path = os.path.join(OUTPUT_DIR, f"C{num_str}.xlsx")
 
-    num_str = str(contrato)
-    num_str = num_str.zfill(7)      # completa com zeros à esquerda
-    output_path = os.path.join(OUTPUT_DIR, f"C{num_str}.xlsx")
-
-    cls.atualizar_template_pivot(
-        template_path=TEMPLATE_PATH, output_path=output_path, df=df, contrato=contrato, new_pivot_name="IR_CS_ANUAL"
-    )
+    # cls.atualizar_template_pivot(
+    #     template_path=TEMPLATE_PATH, output_path=output_path, df=df, contrato=contrato, new_pivot_name="IR_CS_ANUAL"
+    # )
 
 # %% [markdown]
 # ## Exportação do PDF
@@ -112,3 +120,5 @@ for contrato in tqdm(contratos, unit="contrato"):
 # # ( •̀ ω •́ )y
 
 
+
+final_final.to_csv("final.csv")

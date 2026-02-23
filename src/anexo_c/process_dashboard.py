@@ -66,64 +66,65 @@ class process_dashboard:
         sub = sub.groupby(group_keys, as_index=False)[AGRUPAMENTO_VALUES].sum()
 
         return sub
-
+    
     def replicate_years(
         self,
         df: pd.DataFrame,
         fill_value: float = 0,
-        tax_cols: list[str] | str | None = None,  # <-- novo
+        tax_cols: list[str] | str | None = None,
     ) -> pd.DataFrame:
 
         VALUE_COLS = ["ValorDebito", "ValorCredito", "Movimentacao"]
         GROUP_COLS = ["Conta_Nome", "Cosif_Nome"]
-        # 1) extrai Ano de AnoMes
+
         df = df.copy()
         df.loc[:, ANO_COL] = df[ANOMES_COL] // 100
 
-        # 2) checa parâmetros
-        if GROUP_COLS is None or VALUE_COLS is None:
-            raise ValueError(
-                "Passe group_cols, ex: ['Conta_Nome','Cosif_Nome'] "
-                "e value_cols, ex: ['ValorDebito','ValorCredito','Movimentacao']"
-            )
-
-        # 2.1) resolve tax_cols
+        # resolve tax_cols
         if tax_cols is None:
-            # mantém compatibilidade com seu tax_col antigo
-            tax_cols = getattr("tax_cols", None) or getattr("tax_col", None)
+            tax_cols = getattr(self, "tax_cols", None) or getattr(self, "tax_col", None)
             if tax_cols is None:
-                raise ValueError(
-                    "Informe tax_cols (ex: ['IRPJ','CS']) ou defina tax_cols/tax_col."
-                )
-
+                raise ValueError("Informe tax_cols (ex: ['IRPJ','CS']) ou defina tax_cols/tax_col.")
         if isinstance(tax_cols, str):
             tax_cols = [tax_cols]
 
-        # 3) intervalo de anos
-        years = list(range(int(df[ANO_COL].min()), int(df[ANO_COL].max()) + 1))
-
-        # 4) pega todas as combinações únicas de (IRPJ, CS, ...) + detalhes
         key_cols = tax_cols + GROUP_COLS
-        groups = df[key_cols].drop_duplicates().reset_index(drop=True)
 
-        # 5) gera DataFrame de anos
+        # agrega original (inclui 9999)
+        df_agg = df.groupby(key_cols + [ANO_COL], as_index=False)[VALUE_COLS].sum()
+
+        # separa 9999 (fica no output, mas não entra na replicação)
+        df_9999 = df_agg[df_agg[ANO_COL] == 9999].copy()
+        df_real = df_agg[df_agg[ANO_COL] != 9999].copy()
+
+        # se não tem anos reais, não tem o que "replicar"; devolve só o 9999
+        if df_real.empty:
+            return df_9999.reset_index(drop=True)
+
+        # intervalo de anos reais (sem 9999)
+        min_year = int(df_real[ANO_COL].min())
+        max_year = int(df_real[ANO_COL].max())
+        years = list(range(min_year, max_year + 1))
+
+        # combos baseadas nos grupos que existem nos anos reais
+        # (assim a gente não cria “linhas novas” só porque existe 9999)
+        groups = df_real[key_cols].drop_duplicates().reset_index(drop=True)
+
         years_df = pd.DataFrame({ANO_COL: years})
 
-        # 6) cross-join combos × anos
+        # cross join grupos × anos reais
         groups["key"] = 1
         years_df["key"] = 1
         full = groups.merge(years_df, on="key").drop("key", axis=1)
 
-        # 7) agrega seu df original somando duplicatas
-        df_agg = df.groupby(key_cols + [ANO_COL], as_index=False)[VALUE_COLS].sum()
+        # expande anos faltantes
+        df_full_real = full.merge(df_real, on=key_cols + [ANO_COL], how="left")
+        df_full_real[VALUE_COLS] = df_full_real[VALUE_COLS].fillna(fill_value)
 
-        # 8) faz o merge pra “expandir” os anos faltantes
-        df_full = full.merge(df_agg, on=key_cols + [ANO_COL], how="left")
+        # junta de volta o 9999 (sem replicar)
+        out = pd.concat([df_full_real, df_9999], ignore_index=True)
 
-        # 9) preenche zeros (ou outro fill_value)
-        df_full[VALUE_COLS] = df_full[VALUE_COLS].fillna(fill_value)
-
-        return df_full
+        return out
 
     def calcula_pis_cofins(self, df: pd.DataFrame) -> pd.DataFrame:
 
