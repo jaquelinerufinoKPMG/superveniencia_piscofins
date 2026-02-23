@@ -26,7 +26,7 @@ class process_dashboard:
         pivot_section: str,
         description: str,
         section_col: str = "Tributo",  # nome da coluna que identifica IRPJ/CS
-        ) -> pd.DataFrame:
+    ) -> pd.DataFrame:
         """
         tax_filters:
         {"PIS": [...]}
@@ -66,7 +66,7 @@ class process_dashboard:
         sub = sub.groupby(group_keys, as_index=False)[AGRUPAMENTO_VALUES].sum()
 
         return sub
-    
+
     def replicate_years(
         self,
         df: pd.DataFrame,
@@ -84,7 +84,9 @@ class process_dashboard:
         if tax_cols is None:
             tax_cols = getattr(self, "tax_cols", None) or getattr(self, "tax_col", None)
             if tax_cols is None:
-                raise ValueError("Informe tax_cols (ex: ['IRPJ','CS']) ou defina tax_cols/tax_col.")
+                raise ValueError(
+                    "Informe tax_cols (ex: ['IRPJ','CS']) ou defina tax_cols/tax_col."
+                )
         if isinstance(tax_cols, str):
             tax_cols = [tax_cols]
 
@@ -234,18 +236,23 @@ class process_dashboard:
         df_pivot["LALUR"] = -df_pivot.get("IRPJ Adição", 0) - df_pivot.get(
             "IRPJ Exclusão", 0
         )
+
         df_pivot["Base de cálculo - IR"] = df_pivot.get(
             "IRPJ Resultado antes do IR - Total", 0
         ) + df_pivot.get("LALUR", 0)
+
         df_pivot["LACS"] = -df_pivot.get("CSLL Adição", 0) - df_pivot.get(
             "CSLL Exclusão", 0
         )
+
         df_pivot["Base de cálculo - CSLL"] = df_pivot.get(
             "CSLL Resultado antes do CSLL - Total", 0
         ) + df_pivot.get("LACS", 0)
+
         df_pivot["Diferença na Base de Cálculo entre IR e CS"] = df_pivot.get(
             "Base de cálculo - IR", 0
-        ) + df_pivot.get("Base de cálculo - CSLL", 0)
+        ) - df_pivot.get("Base de cálculo - CSLL", 0)
+
         cols = df.columns
         cols = cols.drop(["Ano", "Tributo", "Movimentacao"]).tolist()
 
@@ -296,7 +303,6 @@ class process_dashboard:
         table_index: int = 1,
         contract_cell: str = "C2",
         start_row_hide: int = 8,
-        new_pivot_name: str = "PIS_COFINS_ANUAL"
     ):
         """
         Abre o template de Excel com PivotTables, injeta o DataFrame na Tabela,
@@ -339,8 +345,7 @@ class process_dashboard:
             # 2) Escreve o valor do contrato e renomeia a aba de pivô
             ws_pivot = wb.sheets[pivot_sheet]
             ws_pivot.range(contract_cell).value = contrato
-            new_pivot_name = "PIS_COFINS_ANUAL"
-            ws_pivot.name = new_pivot_name
+            ws_pivot.name = "IR_CS_ANUAL"
 
             # 3) Oculta a aba de dados
             ws_data.visible = False

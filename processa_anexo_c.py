@@ -76,6 +76,8 @@ contratos = [
     if str(contrato) not in nao_encontrados_3
 ]
 
+contratos = [3218370]
+
 for contrato in tqdm(contratos, unit="contrato"):
     tqdm.desc = f"processando contrato: {contrato}"
     dashboard_filtrado = dashboard[dashboard["NumContrato"] == contrato]
@@ -99,7 +101,7 @@ for contrato in tqdm(contratos, unit="contrato"):
     output_path = os.path.join(OUTPUT_DIR, f"C{num_str}.xlsx")
 
     cls.atualizar_template_pivot(
-        template_path=TEMPLATE_PATH, output_path=output_path, df=df, contrato=contrato, new_pivot_name="IR_CS_ANUAL"
+        template_path=TEMPLATE_PATH, output_path=output_path, df=df, contrato=contrato
     )
 
 # %% [markdown]
