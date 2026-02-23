@@ -76,8 +76,6 @@ contratos = [
     if str(contrato) not in nao_encontrados_3
 ]
 
-contratos = [3218370]
-
 for contrato in tqdm(contratos, unit="contrato"):
     tqdm.desc = f"processando contrato: {contrato}"
     dashboard_filtrado = dashboard[dashboard["NumContrato"] == contrato]

@@ -17,6 +17,7 @@ NAO_ENCONTRADOS_TXT = Path(r"numeros_extraidos.txt")
 
 TEMPLATE_PATH = Path(r"docs\template_csll.xlsx")
 OUTPUT_DIR = Path(r"data\output")
+INPUT_DIR = Path(r"data\input")
 
 TAX_FILTERS = {
     "IRPJ": ["RAIR", "Exclusão", "Adição"],
@@ -123,4 +124,4 @@ for contrato, df_contrato in tqdm(
 
 final_final = pd.concat(final_parts, ignore_index=True)
 
-final_final.to_csv("final.csv", index=False)
+final_final.to_csv(fr"{INPUT_DIR}\final.csv", index=False)
