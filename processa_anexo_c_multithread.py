@@ -10,7 +10,7 @@ from tqdm.auto import tqdm
 from src.anexo_c.process_dashboard import process_dashboard
 
 
-FINAL_CSV = Path(r"input\final.csv")                 # CSV consolidado gerado antes
+FINAL_CSV = Path(r"data\input\final.csv")                 # CSV consolidado gerado antes
 TEMPLATE_PATH = Path(r"docs\template_csll.xlsx")
 OUTPUT_DIR = Path(r"data\output")
 INVALID_DIR = Path(r"data\invalid")
@@ -55,8 +55,7 @@ def build_one_excel(
         template_path=template_path,
         output_path=str(output_path),
         df=df,
-        contrato=contrato,
-        new_pivot_name="IR_CS_ANUAL",
+        contrato=contrato
     )
     return contrato, str(output_path)
 
