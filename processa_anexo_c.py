@@ -17,6 +17,10 @@ TAX_FILTERS = {
 OUTPUT_DIR = r"data\output"
 final_all = pd.read_csv(FINAL_CSV, dtype={"NumContrato": "int64"})
 
+cls = process_dashboard(TAX_FILTERS, TEMPLATE_PATH)
+cls.get_contract_numbers(OUTPUT_DIR)
+
+
 contratos_to_process = set()
 if os.path.isfile("processar_kpmg.txt"):
     with open("processar_kpmg.txt", "r", encoding="utf-8") as f:
@@ -29,12 +33,6 @@ if os.path.isfile("numeros_extraidos.txt"):
 
 # Filtre os contratos removendo aqueles que estão na lista de não encontrados
 contratos = sorted(list(contratos_to_process - nao_encontrados_3))
-
-cls = process_dashboard(TAX_FILTERS, TEMPLATE_PATH)
-cls.get_contract_numbers(OUTPUT_DIR)
-
-contratos = [5065761]
-
 for contrato in tqdm(contratos, unit="contrato"):
     tqdm.desc = f"processando contrato: {contrato}"
 
