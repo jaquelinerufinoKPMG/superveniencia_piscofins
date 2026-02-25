@@ -395,7 +395,7 @@ class process_dashboard:
             app.quit()
 
     def get_contract_numbers(
-        self, folder: str, file_name: str = "numeros_extraidos.txt"
+        self, folder: str, file_name: str 
     ):
         pattern = re.compile(r"\d+")
         contracts = []
