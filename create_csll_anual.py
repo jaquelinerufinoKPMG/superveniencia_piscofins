@@ -11,13 +11,13 @@ from src.anexo_c.process_dashboard import process_dashboard
 
 load_dotenv()
 
-DASHBOARD_CSV = Path(r"data\input\Diligencia_Contratos.csv")
-CONTRATOS_ERRO_XLSX = Path(r"docs\contratos_com_erro.xlsx")
+DASHBOARD_CSV = Path(r"data/input/Diligencia_Contratos.csv")
+CONTRATOS_ERRO_XLSX = Path(r"docs/vazio.xlsx")
 NAO_ENCONTRADOS_TXT = Path(r"numeros_extraidos.txt")
 
-TEMPLATE_PATH = Path(r"docs\template_csll.xlsx")
-OUTPUT_DIR = Path(r"data\output")
-INPUT_DIR = Path(r"data\input")
+TEMPLATE_PATH = Path(r"docs/template_csll.xlsx")
+OUTPUT_DIR = Path(r"data/output2")
+INPUT_DIR = Path(r"data/input")
 
 TAX_FILTERS = {
     "IRPJ": ["RAIR", "Exclusão", "Adição"],
@@ -84,6 +84,10 @@ dashboard = pd.read_csv(
     dtype={"NumContrato": "int64"},
 )
 
+cls = process_dashboard(TAX_FILTERS, str(TEMPLATE_PATH))
+cls.get_contract_numbers(str(OUTPUT_DIR), NAO_ENCONTRADOS_TXT)
+
+
 contratos_selecionados = load_contratos_selecionados(CONTRATOS_ERRO_XLSX)
 nao_encontrados = load_nao_encontrados(NAO_ENCONTRADOS_TXT)
 
@@ -94,10 +98,6 @@ if nao_encontrados:
 dash_small = dashboard.loc[mask].copy()
 
 del dashboard
-
-cls = process_dashboard(TAX_FILTERS, str(TEMPLATE_PATH))
-cls.get_contract_numbers(str(OUTPUT_DIR))
-
 final_parts: list[pd.DataFrame] = []
 
 n_contracts = int(dash_small["NumContrato"].nunique())
@@ -124,4 +124,4 @@ for contrato, df_contrato in tqdm(
 
 final_final = pd.concat(final_parts, ignore_index=True)
 
-final_final.to_csv(fr"{INPUT_DIR}\final.csv", index=False)
+final_final.to_csv(fr"{INPUT_DIR}/final_original_completo.csv", index=False)
