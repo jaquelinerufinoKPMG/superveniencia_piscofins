@@ -11,9 +11,9 @@ from src.anexo_c.process_dashboard import process_dashboard
 
 load_dotenv()
 
-DASHBOARD_CSV = Path(r"data/input/Diligencia_Contratos.csv")
-CONTRATOS_ERRO_XLSX = Path(r"docs/vazio.xlsx")
-NAO_ENCONTRADOS_TXT = Path(r"numeros_extraidos.txt")
+DASHBOARD_CSV = Path(r"data/input/Diligencia_Contratos 2.csv")
+# CONTRATOS_ERRO_XLSX = Path(r"docs/vazio.xlsx")
+# NAO_ENCONTRADOS_TXT = Path(r"numeros_extraidos.txt")
 
 TEMPLATE_PATH = Path(r"docs/template_csll.xlsx")
 OUTPUT_DIR = Path(r"data/output2")
@@ -85,29 +85,32 @@ dashboard = pd.read_csv(
 )
 
 cls = process_dashboard(TAX_FILTERS, str(TEMPLATE_PATH))
-cls.get_contract_numbers(str(OUTPUT_DIR), NAO_ENCONTRADOS_TXT)
+# cls.get_contract_numbers(str(OUTPUT_DIR), NAO_ENCONTRADOS_TXT)
 
 
-contratos_selecionados = load_contratos_selecionados(CONTRATOS_ERRO_XLSX)
-nao_encontrados = load_nao_encontrados(NAO_ENCONTRADOS_TXT)
+# contratos_selecionados = load_contratos_selecionados(CONTRATOS_ERRO_XLSX)
+# nao_encontrados = load_nao_encontrados(NAO_ENCONTRADOS_TXT)
 
-mask = dashboard["NumContrato"].isin(contratos_selecionados)
-if nao_encontrados:
-    mask &= ~dashboard["NumContrato"].isin(nao_encontrados)
+# mask = dashboard["NumContrato"].isin(contratos_selecionados)
+# if nao_encontrados:
+#     mask &= ~dashboard["NumContrato"].isin(nao_encontrados)
 
-dash_small = dashboard.loc[mask].copy()
+# dash_small = dashboard.loc[mask].copy()
 
-del dashboard
+# del dashboard
 final_parts: list[pd.DataFrame] = []
 
-n_contracts = int(dash_small["NumContrato"].nunique())
+n_contracts = int(dashboard["NumContrato"].nunique())
 
 for contrato, df_contrato in tqdm(
-    dash_small.groupby("NumContrato", sort=False),
+    dashboard.groupby("NumContrato", sort=False),
     total=n_contracts,
     unit=" contrato",
 ):
     # replica anos 1x
+
+    if df_contrato.empty:
+        continue
     df_rep = cls.replicate_years(df_contrato, tax_cols=["IRPJ", "CS"])
 
     # monta blocos e concatena 1x
@@ -124,4 +127,4 @@ for contrato, df_contrato in tqdm(
 
 final_final = pd.concat(final_parts, ignore_index=True)
 
-final_final.to_csv(fr"{INPUT_DIR}/final_original_completo.csv", index=False)
+final_final.to_csv(fr"{INPUT_DIR}/final_novo_completo.csv", index=False)
