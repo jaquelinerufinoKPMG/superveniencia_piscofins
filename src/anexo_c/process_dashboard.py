@@ -1,9 +1,13 @@
-import pandas as pd
-import numpy as np
-import xlwings as xw
+from os import path
 import re
 import os
 from itertools import product
+
+import numpy as np
+import pandas as pd
+from pathlib import Path
+from tqdm.asyncio import tqdm
+import xlwings as xw
 
 AGRUPAMENTO_COLS = ["Ano", "Conta_Nome", "Cosif_Nome"]
 AGRUPAMENTO_VALUES = ["ValorDebito", "ValorCredito", "Movimentacao"]
@@ -19,27 +23,84 @@ class process_dashboard:
         self.tax_cols = tax_cols
         pass
 
-    def group_revenues(
+    def carrega_contratos_selecionados(self, path: Path) -> set[int]:
+        """
+        Lê o documento Excel ou CSV com os contratos a processar, onde cada linha tem um número de contrato
+        no formato C0001234.xlsx e retorna set de int (1234).
+        """
+
+        if path is None or not path.exists():
+            return set()
+
+        if path.suffix == ".csv" or path.suffix == ".txt":
+            s = pd.read_csv(path).iloc[:, 0].astype(str)
+        elif path.suffix == ".xlsx":
+            s = pd.read_excel(path).iloc[:, 0].astype(str)
+
+        # remove extensão e o "C"
+        s = (
+            s.str.replace(".xlsx", "", regex=False)
+            .str.replace("C", "", regex=False)
+            .str.strip()
+        )
+
+        # mantém só números válidos
+        s = pd.to_numeric(s, errors="coerce").dropna().astype("int64")
+        return set(s.tolist())
+
+    def carrega_contratos_processados(self, path: Path) -> set[int]:
+        """
+        Lê numeros_extraidos.txt (1 número por linha) e retorna set[int].
+        Ignora linhas inválidas.
+        """
+        if path is None or not path.exists():
+            return set()
+
+        out: set[int] = set()
+        with path.open("r", encoding="utf-8") as f:
+            for line in f:
+                t = line.strip()
+                if not t:
+                    continue
+                if t.isdigit():
+                    out.add(int(t))
+        return out
+
+    def grava_contratos_processados(self, folder: str, file_name: str):
+        pattern = re.compile(r"\d+")
+        contracts = []
+        for file in os.listdir(folder):
+            match = pattern.findall(file)  # e.g. ['123','456']
+            if match:
+                contracts.append("".join(match))  # => '123456'
+        # Grava no TXT, uma sequência por linha
+        with open(file_name, "w", encoding="utf-8") as f:
+            for seq in contracts:
+                f.write(seq + "\n")
+        print(f"✅ Extraídos {len(contracts)} itens e salvos em '{file_name}'")
+        return contracts
+
+    def agrupa_impostos(
         self,
         df: pd.DataFrame,
-        tax_filters: dict[str, list],
-        pivot_section: str,
-        description: str,
-        section_col: str = "Tributo",  # nome da coluna que identifica IRPJ/CS
+        filtros_impostos: dict[str, list],
+        secao_pivot: str,
+        descricao: str,
+        coluna_secao: str = "Tributo",  # nome da coluna que identifica IRPJ/CS
     ) -> pd.DataFrame:
         """
-        tax_filters:
+        filtros_impostos:
         {"PIS": [...]}
         ou {"IRPJ": [...], "CS": [...]}
 
-        pivot_section:
+        secao_pivot:
         "IRPJ" ou "CS" (carimbo para a pivot)
 
-        description:
+        descricao:
         texto da linha/bloco, ex: "Resultado antes do IR"
         """
 
-        cols = list(tax_filters.keys())
+        cols = list(filtros_impostos.keys())
 
         # valida colunas
         missing = [c for c in cols if c not in df.columns]
@@ -49,29 +110,29 @@ class process_dashboard:
         # monta máscara
         if len(cols) == 1:
             col = cols[0]
-            mask = df[col].isin(tax_filters[col])
+            mask = df[col].isin(filtros_impostos[col])
         else:
-            allowed_lists = [tax_filters[c] for c in cols]
+            allowed_lists = [filtros_impostos[c] for c in cols]
             allowed_tuples = set(product(*allowed_lists))
             mask = df[cols].apply(tuple, axis=1).isin(allowed_tuples)
 
         sub = df.loc[mask].copy()
 
         # carimba seção e descrição
-        sub[section_col] = pivot_section + " " + description
-        sub[DESC_COL] = description
+        sub[coluna_secao] = secao_pivot + " " + descricao
+        sub[DESC_COL] = descricao
 
-        # agrupa (IMPORTANTE: inclui section_col no groupby pra não misturar IRPJ/CS)
-        group_keys = list(AGRUPAMENTO_COLS) + [section_col, DESC_COL]
+        # agrupa (IMPORTANTE: inclui coluna_secao no groupby pra não misturar IRPJ/CS)
+        group_keys = list(AGRUPAMENTO_COLS) + [coluna_secao, DESC_COL]
         sub = sub.groupby(group_keys, as_index=False)[AGRUPAMENTO_VALUES].sum()
 
         return sub
 
-    def replicate_years(
+    def replica_anos(
         self,
         df: pd.DataFrame,
-        fill_value: float = 0,
-        tax_cols: list[str] | str | None = None,
+        valor_preenchimento: float = 0,
+        coluna_tributo: list[str] | str | None = None,
     ) -> pd.DataFrame:
 
         VALUE_COLS = ["ValorDebito", "ValorCredito", "Movimentacao"]
@@ -80,17 +141,19 @@ class process_dashboard:
         df = df.copy()
         df.loc[:, ANO_COL] = df[ANOMES_COL] // 100
 
-        # resolve tax_cols
-        if tax_cols is None:
-            tax_cols = getattr(self, "tax_cols", None) or getattr(self, "tax_col", None)
-            if tax_cols is None:
+        # resolve coluna_tributo
+        if coluna_tributo is None:
+            coluna_tributo = getattr(self, "coluna_tributo", None) or getattr(
+                self, "coluna_tributos", None
+            )
+            if coluna_tributo is None:
                 raise ValueError(
-                    "Informe tax_cols (ex: ['IRPJ','CS']) ou defina tax_cols/tax_col."
+                    "Informe coluna_tributo (ex: ['IRPJ','CS']) ou defina coluna_tributo/coluna_tributos."
                 )
-        if isinstance(tax_cols, str):
-            tax_cols = [tax_cols]
+        if isinstance(coluna_tributo, str):
+            coluna_tributo = [coluna_tributo]
 
-        key_cols = tax_cols + GROUP_COLS
+        key_cols = coluna_tributo + GROUP_COLS
 
         # agrega original (inclui 9999)
         df_agg = df.groupby(key_cols + [ANO_COL], as_index=False)[VALUE_COLS].sum()
@@ -121,7 +184,7 @@ class process_dashboard:
 
         # expande anos faltantes
         df_full_real = full.merge(df_real, on=key_cols + [ANO_COL], how="left")
-        df_full_real[VALUE_COLS] = df_full_real[VALUE_COLS].fillna(fill_value)
+        df_full_real[VALUE_COLS] = df_full_real[VALUE_COLS].fillna(valor_preenchimento)
 
         # junta de volta o 9999 (sem replicar)
         out = pd.concat([df_full_real, df_9999], ignore_index=True)
@@ -278,6 +341,142 @@ class process_dashboard:
 
         return df_final
 
+    def gerar_preprocessado_csll(
+        self, path_dashboard: Path, path_contratos: Path, path_output: Path
+    ):
+        CONFIGS = [
+            (
+                {
+                    "IRPJ": ["RAIR", "Exclusão", "Adição"],
+                    "CS": ["RAIR", "Exclusão", "Adição"],
+                },
+                "IRPJ",
+                "Resultado antes do IR",
+            ),
+            (
+                {"IRPJ": ["Adição"], "CS": ["RAIR", "Exclusão", "Adição"]},
+                "IRPJ",
+                "Adição",
+            ),
+            (
+                {"IRPJ": ["Exclusão"], "CS": ["RAIR", "Exclusão", "Adição"]},
+                "IRPJ",
+                "Exclusão",
+            ),
+            (
+                {
+                    "IRPJ": ["RAIR", "Exclusão", "Adição"],
+                    "CS": ["RAIR", "Exclusão", "Adição"],
+                },
+                "CSLL",
+                "Resultado antes do CSLL",
+            ),
+            (
+                {"IRPJ": ["RAIR", "Exclusão", "Adição"], "CS": ["Adição"]},
+                "CSLL",
+                "Adição",
+            ),
+            (
+                {"IRPJ": ["RAIR", "Exclusão", "Adição"], "CS": ["Exclusão"]},
+                "CSLL",
+                "Exclusão",
+            ),
+        ]
+        dashboard = pd.read_csv(
+            path_dashboard,
+            sep=";",
+            encoding="latin1",
+            dtype={"NumContrato": "int64"},
+        )
+        contratos_selecionados = self.carrega_contratos_selecionados(path_contratos)
+        if contratos_selecionados:
+
+            mask = dashboard["NumContrato"].isin(contratos_selecionados)
+
+            dashboard = dashboard.loc[mask].copy()
+
+        final_parts: list[pd.DataFrame] = []
+
+        n_contracts = int(dashboard["NumContrato"].nunique())
+
+        for contrato, df_contrato in tqdm(
+            dashboard.groupby("NumContrato", sort=False),
+            total=n_contracts,
+            unit=" contrato",
+        ):
+            if df_contrato.empty:
+                continue
+
+            df_rep = self.replica_anos(df_contrato, coluna_tributo=["IRPJ", "CS"])
+
+            # monta blocos e concatena 1x
+            blocos = [
+                self.agrupa_impostos(df_rep, filtros, secao, desc)
+                for filtros, secao, desc in CONFIGS
+            ]
+            final = pd.concat(blocos, ignore_index=True)
+
+            final = self.calcula_csll(final)
+            final["NumContrato"] = contrato
+
+            final_parts.append(final)
+
+            final_final = pd.concat(final_parts, ignore_index=True)
+
+        final_final.to_csv(path_output, index=False)
+
+    def gerar_preprocessado_pis_cofins(
+        self, path_dashboard: Path, path_contratos: Path, path_output: Path):
+        CONFIGS = [
+            ({"PIS":['Total das Receitas', ' Exclusão']}, 'PIS','(01) Total das Receitas'),
+            ({"PIS":[' Exclusão']}, 'PIS','(02) Exclusão'),
+            ({"PIS":[' Dedução']}, 'PIS','(03) Dedução'),
+            ({"PIS":['Sem efeito']}, 'PIS','Sem efeito no Pis Cofins'),
+        ]
+        dashboard = pd.read_csv(
+            path_dashboard,
+            sep=";",
+            encoding="latin1",
+            dtype={"NumContrato": "int64"},
+        )
+        contratos_selecionados = self.carrega_contratos_selecionados(path_contratos)
+        if contratos_selecionados:
+
+            mask = dashboard["NumContrato"].isin(contratos_selecionados)
+
+            dashboard = dashboard.loc[mask].copy()
+        
+
+        final_parts: list[pd.DataFrame] = []
+
+        n_contracts = int(dashboard["NumContrato"].nunique())
+
+        for contrato, df_contrato in tqdm(
+            dashboard.groupby("NumContrato", sort=False),
+            total=n_contracts,
+            unit=" contrato",
+        ):
+            if df_contrato.empty:
+                continue
+
+            df_rep = self.replica_anos(df_contrato, coluna_tributo="PIS")
+
+            # monta blocos e concatena 1x
+            blocos = [
+                self.agrupa_impostos(df_rep, filtros, secao, desc)
+                for filtros, secao, desc in CONFIGS
+            ]
+            final = pd.concat(blocos, ignore_index=True)
+
+            final = self.calcula_pis_cofins(final)
+            final["NumContrato"] = contrato
+
+            final_parts.append(final)
+
+            final_final = pd.concat(final_parts, ignore_index=True)
+
+        final_final.to_csv(path_output, index=False)
+
     def x(self, file_path, file_name):
         pattern = re.compile(r"\d+")
 
@@ -303,6 +502,7 @@ class process_dashboard:
         table_index: int = 1,
         contract_cell: str = "C2",
         start_row_hide: int = 8,
+        sheet_name: str = "Sheet1",
     ):
         """
         Abre o template de Excel com PivotTables, injeta o DataFrame na Tabela,
@@ -345,7 +545,7 @@ class process_dashboard:
             # 2) Escreve o valor do contrato e renomeia a aba de pivô
             ws_pivot = wb.sheets[pivot_sheet]
             ws_pivot.range(contract_cell).value = contrato
-            ws_pivot.name = "IR_CS_ANUAL"
+            ws_pivot.name = sheet_name
 
             # 3) Oculta a aba de dados
             ws_data.visible = False
@@ -394,17 +594,116 @@ class process_dashboard:
                 pass
             app.quit()
 
-    def get_contract_numbers(
-        self, folder: str, file_name: str 
+    def processar_dashboard_csll(
+        self,
+        path_preprocessado: Path,
+        path_output: Path,
+        path_processados: Path = None,
+        path_filtro: Path = None,
+        path_dashboard: Path = None,
+        path_contratos: Path = None,
+        path_output_preprocessado: Path = None,        
     ):
-        pattern = re.compile(r"\d+")
-        contracts = []
-        for file in os.listdir(folder):
-            match = pattern.findall(file)  # e.g. ['123','456']
-            if match:
-                contracts.append("".join(match))  # => '123456'
-        # Grava no TXT, uma sequência por linha
-        with open(file_name, "w", encoding="utf-8") as f:
-            for seq in contracts:
-                f.write(seq + "\n")
-        print(f"✅ Extraídos {len(contracts)} itens e salvos em '{file_name}'")
+        if path_dashboard is not None:
+            self.gerar_preprocessado_csll(path_dashboard, path_contratos, path_output_preprocessado)
+
+            path_preprocessado = path_output
+
+        dashboard = pd.read_csv(path_preprocessado)
+
+        if path_filtro is not None:
+            contratos_selecionados = self.carrega_contratos_selecionados(path_filtro)
+            if contratos_selecionados:
+                mask = dashboard["NumContrato"].isin(contratos_selecionados)
+                dashboard = dashboard.loc[mask].copy()
+
+        if path_processados is not None:
+            try:
+                contratos_processados = self.carrega_contratos_processados(path_processados)
+            except PermissionError:
+                contratos_processados = self.grava_contratos_processados(path_processados, path_preprocessado.parent / "numeros_processados.txt")
+            mask = dashboard["NumContrato"].isin(contratos_processados)
+            dashboard = dashboard.loc[mask].copy()
+
+        contratos = sorted(dashboard["NumContrato"].unique().tolist())
+
+        for contrato in tqdm(contratos, unit=" contrato"):
+            tqdm.desc = f"Processando contrato: {contrato}"
+
+            # pega só o que é desse contrato no final.csv
+            df = dashboard[dashboard["NumContrato"] == contrato]
+
+            # se não existir no CSV, pula
+            if df.empty:
+                continue
+
+            num_str = str(contrato).zfill(7)  # completa com zeros à esquerda
+            output_file = path_output / f"C{num_str}.xlsx"
+
+            try:
+                self.atualizar_template_pivot(
+                    template_path=self.template_path,
+                    output_path=output_file,
+                    df=df,
+                    contrato=contrato,
+                    sheet_name="IR_CS_ANUAL"
+                )
+            except Exception as e:
+                print(f"Erro ao processar o contrato {num_str}\n{e}")
+
+    def processar_dashboard_pis_cofins(
+        self,
+        path_preprocessado: Path,
+        path_output: Path,
+        path_processados: Path = None,
+        path_filtro: Path = None,
+        path_dashboard: Path = None,
+        path_contratos: Path = None,
+        path_output_preprocessado: Path = None,        
+    ):
+        if path_dashboard is not None:
+            self.gerar_preprocessado_piscofins(path_dashboard, path_contratos, path_output_preprocessado)
+
+            path_preprocessado = path_output
+
+        dashboard = pd.read_csv(path_preprocessado)
+
+        if path_filtro is not None:
+            contratos_selecionados = self.carrega_contratos_selecionados(path_filtro)
+            if contratos_selecionados:
+                mask = dashboard["NumContrato"].isin(contratos_selecionados)
+                dashboard = dashboard.loc[mask].copy()
+
+        if path_processados is not None:
+            try:
+                contratos_processados = self.carrega_contratos_processados(path_processados)
+            except PermissionError:
+                contratos_processados = self.grava_contratos_processados(path_processados, path_preprocessado.parent / "numeros_processados.txt")
+            mask = dashboard["NumContrato"].isin(contratos_processados)
+            dashboard = dashboard.loc[mask].copy()
+
+        contratos = sorted(dashboard["NumContrato"].unique().tolist())
+
+        for contrato in tqdm(contratos, unit=" contrato"):
+            tqdm.desc = f"Processando contrato: {contrato}"
+
+            # pega só o que é desse contrato no final.csv
+            df = dashboard[dashboard["NumContrato"] == contrato]
+
+            # se não existir no CSV, pula
+            if df.empty:
+                continue
+
+            num_str = str(contrato).zfill(7)  # completa com zeros à esquerda
+            output_file = os.path.join(path_output, f"C{num_str}.xlsx")
+
+            try:
+                self.atualizar_template_pivot(
+                    template_path=self.template_path,
+                    output_path=output_file,
+                    df=df,
+                    contrato=contrato,
+                    sheet_name="IR_CS_ANUAL"
+                )
+            except Exception as e:
+                print(f"Erro ao processar o contrato {num_str}\n{e}")

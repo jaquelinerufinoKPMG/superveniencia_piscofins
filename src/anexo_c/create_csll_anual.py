@@ -41,25 +41,32 @@ CONFIGS = [
     ({"IRPJ": ["RAIR", "Exclusão", "Adição"], "CS": ["Exclusão"]}, "CSLL", "Exclusão"),
 ]
 
-def load_contratos_selecionados(path: Path) -> set[int]:
+def carrega_contratos_selecionados(path: Path) -> set[int]:
     """
-    Lê a planilha docs/contratos_com_erro.xlsx (coluna 'arquivo')
+    Lê o documento Excel ou CSV com os contratos a processar, onde cada linha tem um número de contrato
     no formato C0001234.xlsx e retorna set de int (1234).
     """
-    s = pd.read_excel(path)["arquivo"].astype(str)
+
+    if not path.exists():
+        return set()
+    
+    if path.suffix == ".csv" or path.suffix == ".txt":
+        s = pd.read_csv(path).iloc[:,0].astype(str)
+    elif path.suffix == ".xlsx":
+        s = pd.read_excel(path).iloc[:,0].astype(str)
 
     # remove extensão e o "C"
     s = (
         s.str.replace(".xlsx", "", regex=False)
-         .str.replace("C", "", regex=False)
-         .str.strip()
+            .str.replace("C", "", regex=False)
+            .str.strip()
     )
 
     # mantém só números válidos
     s = pd.to_numeric(s, errors="coerce").dropna().astype("int64")
     return set(s.tolist())
 
-def load_nao_encontrados(path: Path) -> set[int]:
+def carrega_contratos_processados(path: Path) -> set[int]:
     """
     Lê numeros_extraidos.txt (1 número por linha) e retorna set[int].
     Ignora linhas inválidas.
@@ -88,8 +95,8 @@ cls = process_dashboard(TAX_FILTERS, str(TEMPLATE_PATH))
 # cls.get_contract_numbers(str(OUTPUT_DIR), NAO_ENCONTRADOS_TXT)
 
 
-# contratos_selecionados = load_contratos_selecionados(CONTRATOS_ERRO_XLSX)
-# nao_encontrados = load_nao_encontrados(NAO_ENCONTRADOS_TXT)
+# contratos_selecionados = carrega_contratos_selecionados(CONTRATOS_ERRO_XLSX)
+# nao_encontrados = carrega_contratos_processados(NAO_ENCONTRADOS_TXT)
 
 # mask = dashboard["NumContrato"].isin(contratos_selecionados)
 # if nao_encontrados:
@@ -111,6 +118,7 @@ for contrato, df_contrato in tqdm(
 
     if df_contrato.empty:
         continue
+    
     df_rep = cls.replicate_years(df_contrato, tax_cols=["IRPJ", "CS"])
 
     # monta blocos e concatena 1x
