@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2025.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="78" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`</File>
+          <FormatSpecificOptions>
+            <FirstRowData>False</FirstRowData>
+            <ImportLine>2</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Copy of DOC_BASE_Reprocessado (1).xlsx
+Query=`Base Diligencia Reprocessad...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="n° do contrato" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="data do contrato" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Date" />
+            <Field name="razão social/nome completo do arrendatário" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="CNPJ/CPF do arrendatário" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="n° de parcelas contratadas" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="data de vencimento da 1ª contraprestação" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="data de vencimento da última contraprestação" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="data de liquidação do contrato" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="Prazo de vida útil normal do bem (em meses);" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="Prazo de vida útil adotado para o bem (em meses);" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+            <Field name="Valor do Bem" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="Valor da quota de depreciação mensal" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="valor total das contraprestações de arrendamento" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="valor total do VRG" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="valor total das superveniências ou insuficiências de depreciação lançadas no resultado entre a data inicial do contrato e 31/12/2016" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="valor total das superveniências ou insuficiências de depreciação lançadas no resultado de 01/01/2017 a 31/12/2017" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="valor total das superveniências ou insuficiências de depreciação lançadas no resultado a partir de 01/01/2018" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="Double" />
+            <Field name="Situação" size="255" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Copy of DOC_BASE_Reprocessado (1).xlsx|||`Base Diligencia Reprocessado$`" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="654" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File FileFormat="19" MaxRecords="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\DOC_BASE_Reprocessado.yxdb</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <NoSpatialIndex>False</NoSpatialIndex>
+            <SaveSource>True</SaveSource>
+            <WriteCompatibleVersion>False</WriteCompatibleVersion>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DOC_BASE_Reprocessado.yxdb</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="174" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>data de vencimento da 1ª contraprestação</InputFieldName>
+          <Language>English</Language>
+          <Format>yyyy-MM-dd</Format>
+          <OutputFieldName>DateTime_Out_Contraprestação</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert data de vencimento da 1ª contraprestação From:
+yyyy-MM-dd</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="270" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>data de vencimento da última contraprestação</InputFieldName>
+          <Language>English</Language>
+          <Format />
+          <OutputFieldName>DateTime_Vencimento</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert data de vencimento da última contraprestação From:
+Custom</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="366" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>data de liquidação do contrato</InputFieldName>
+          <Language>English</Language>
+          <Format />
+          <OutputFieldName>DateTime_Liquidação</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert data de liquidação do contrato From:
+Custom</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="462" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[DateTime_Out_Contraprestação]" field="data de vencimento da 1ª contraprestação" size="255" type="V_String" enabled="true" />
+            <FormulaField expression="[DateTime_Vencimento]" field="data de vencimento da última contraprestação" size="255" type="V_String" enabled="true" />
+            <FormulaField expression="[DateTime_Liquidação]" field="data de liquidação do contrato" size="255" type="V_String" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>data de vencimento da 1ª contraprestação = [DateTime_Out_Contraprestação]
+data d...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="558" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="n° do contrato" selected="True" />
+            <SelectField field="data do contrato" selected="True" />
+            <SelectField field="razão social/nome completo do arrendatário" selected="True" />
+            <SelectField field="CNPJ/CPF do arrendatário" selected="True" />
+            <SelectField field="n° de parcelas contratadas" selected="True" />
+            <SelectField field="data de vencimento da 1ª contraprestação" selected="True" type="Date" size="10" />
+            <SelectField field="data de vencimento da última contraprestação" selected="True" type="Date" size="10" />
+            <SelectField field="data de liquidação do contrato" selected="True" type="Date" size="10" />
+            <SelectField field="Prazo de vida útil normal do bem (em meses);" selected="True" />
+            <SelectField field="Prazo de vida útil adotado para o bem (em meses);" selected="True" />
+            <SelectField field="Valor do Bem" selected="True" />
+            <SelectField field="Valor da quota de depreciação mensal" selected="True" />
+            <SelectField field="valor total das contraprestações de arrendamento" selected="True" />
+            <SelectField field="valor total do VRG" selected="True" />
+            <SelectField field="valor total das superveniências ou insuficiências de depreciação lançadas no resultado entre a data inicial do contrato e 31/12/2016" selected="True" />
+            <SelectField field="valor total das superveniências ou insuficiências de depreciação lançadas no resultado de 01/01/2017 a 31/12/2017" selected="True" />
+            <SelectField field="valor total das superveniências ou insuficiências de depreciação lançadas no resultado a partir de 01/01/2018" selected="True" />
+            <SelectField field="Situação" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>DOC BASE Reprocessado</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="1b5a83d8-6238-4804-94a0-1dc4dff32a64" />
+      <Telemetry>
+        <PreviousWorkflowId value="99d38c0b-b5aa-443d-b07b-869c7c38d453" />
+        <OriginWorkflowId value="99d38c0b-b5aa-443d-b07b-869c7c38d453" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

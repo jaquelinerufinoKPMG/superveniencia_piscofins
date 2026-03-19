@@ -1,0 +1,414 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2025.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="48">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="642" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="iif(Contains([VALOR DEBITO],',') , Replace([VALOR DEBITO], ',', '.'), [VALOR DEBITO])" field="VALOR DEBITO" size="254" type="V_String" enabled="true" />
+            <FormulaField expression="ToNumber([VALOR DEBITO])" field="VALOR DEBITO" size="254" type="V_String" enabled="true" />
+            <FormulaField expression="iif(Contains([VALOR CREDITO],',') , Replace([VALOR CREDITO], ',','.'), [VALOR CREDITO])" field="VALOR CREDITO" size="254" type="V_String" enabled="true" />
+            <FormulaField expression="ToNumber([VALOR CREDITO])" field="VALOR CREDITO" size="254" type="V_String" enabled="true" />
+            <FormulaField expression="Replace([DATA GERACAO], &quot;99999999&quot;, &quot;20241031&quot;)" field="DATA GERACAO" size="254" type="V_String" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>VALOR DEBITO = iif(Contains([VALOR DEBITO],',') , Replace([VALOR DEBITO], ',', '...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="49">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="786" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>DATA GERACAO</InputFieldName>
+          <Language>English</Language>
+          <Format>yyyyMMdd</Format>
+          <OutputFieldName>Data</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert DATA GERACAO From:
+Custom</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="47">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="930" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="VALOR DEBITO" selected="True" type="FixedDecimal" size="20.2" />
+            <SelectField field="VALOR CREDITO" selected="True" type="FixedDecimal" size="20.2" />
+            <SelectField field="Field_16" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="46">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1122" y="102" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File FileFormat="19" MaxRecords="">C:\analysis\itau\databases\Conta Grafica - Diligencia 2017 - Completo.yxdb</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <NoSpatialIndex>False</NoSpatialIndex>
+            <SaveSource>True</SaveSource>
+            <WriteCompatibleVersion>False</WriteCompatibleVersion>
+          </FormatSpecificOptions>
+          <MultiFile value="True" />
+          <MultiFileType>FileName</MultiFileType>
+          <MultiFileField>file_name</MultiFileField>
+          <KeepField value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Conta Grafica - Diligencia 2017 - Completo.yxdb</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="55">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="5" y="29" width="301" height="229" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Altera Header</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Altera Header</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="45">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="30" y="78" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File RecordLimit="" SearchSubDirs="False" FileFormat="0" OutputFileName="">C:\analysis\itau\raw\Conta Grafica.csv</File>
+              <FormatSpecificOptions>
+                <HeaderRow>True</HeaderRow>
+                <IgnoreErrors>False</IgnoreErrors>
+                <AllowShareWrite>False</AllowShareWrite>
+                <ImportLine>1</ImportLine>
+                <FieldLen>254</FieldLen>
+                <SingleThreadRead>False</SingleThreadRead>
+                <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+                <Delimeter>;</Delimeter>
+                <QuoteRecordBreak>False</QuoteRecordBreak>
+                <CodePage>28591</CodePage>
+              </FormatSpecificOptions>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Conta Grafica.csv</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="DATA GERACAO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="Field_16" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="51">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="30" y="174" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="0" />
+              <Fields>
+                <Field name="DATA GERACAO" />
+                <Field name="CONTADOR DEBITO" />
+                <Field name="NUM CONTRATO DEBITO" />
+                <Field name="CONTA DEBITO" />
+                <Field name="NOME CONTA DEBITO" />
+                <Field name="VALOR DEBITO" />
+                <Field name="CONTADOR CREDITO" />
+                <Field name="NUM CONTRATO CREDITO" />
+                <Field name="CONTA CREDITO" />
+                <Field name="NOME CONTA CREDITO" />
+                <Field name="VALOR CREDITO" />
+                <Field name="COSIF DEBITO" />
+                <Field name="NOME COSIF DEBITO" />
+                <Field name="COSIF CREDITO" />
+                <Field name="NOME COSIF CREDITO" />
+              </Fields>
+              <Data />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>Columns Names</Name>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="52">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+            <Position x="222" y="90" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <RenameMode>RightInputMetadata</RenameMode>
+              <Fields orderChanged="False">
+                <Field name="DATA GERACAO" />
+                <Field name="CONTADOR DEBITO" />
+                <Field name="NUM CONTRATO DEBITO" />
+                <Field name="CONTA DEBITO" />
+                <Field name="NOME CONTA DEBITO" />
+                <Field name="VALOR DEBITO" />
+                <Field name="CONTADOR CREDITO" />
+                <Field name="NUM CONTRATO CREDITO" />
+                <Field name="CONTA CREDITO" />
+                <Field name="NOME CONTA CREDITO" />
+                <Field name="VALOR CREDITO" />
+                <Field name="COSIF DEBITO" />
+                <Field name="NOME COSIF DEBITO" />
+                <Field name="COSIF CREDITO" />
+                <Field name="NOME COSIF CREDITO" />
+                <Field name="Field_16" />
+                <Field name="*Unknown" />
+              </Fields>
+              <Expression />
+              <NamesFromMetadata>
+                <OnError>Warn</OnError>
+                <ChangeFields>False</ChangeFields>
+              </NamesFromMetadata>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="DATA GERACAO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="Field_16" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="56">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="329" y="53" width="241" height="205" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Nome do Arquivo</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Nome do Arquivo</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="53">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+            <Position x="486" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <CartesianMode>Error</CartesianMode>
+              <SelectConfiguration>
+                <Configuration outputConnection="Output">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="354" y="174" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="file_name" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>Conta Gráfica - Diligência 2017 - Completo - Teste.yxdb</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="49" Connection="Output" />
+      <Destination ToolID="47" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="47" Connection="Output" />
+      <Destination ToolID="46" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="45" Connection="Output" />
+      <Destination ToolID="52" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="51" Connection="Output" />
+      <Destination ToolID="52" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="52" Connection="Output" />
+      <Destination ToolID="53" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="Output" />
+      <Destination ToolID="53" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="53" Connection="Output" />
+      <Destination ToolID="48" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>toyxdb</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="46cc0b56-5e17-44b0-a905-123aaac618aa" />
+      <Telemetry>
+        <PreviousWorkflowId value="eee49e12-9452-4336-8ee5-8d2cb209e2a8" />
+        <OriginWorkflowId value="eee49e12-9452-4336-8ee5-8d2cb209e2a8" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

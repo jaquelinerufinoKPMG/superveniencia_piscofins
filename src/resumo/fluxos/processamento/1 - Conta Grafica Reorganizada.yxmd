@@ -1,0 +1,737 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2025.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="95">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="112" y="53" width="1114" height="761" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Container 95</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="42">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="137" y="386" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\Conta Grafica - Diligencia 2018 - Completo.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Conta Grafica - Diligencia 2018 - Completo.yxdb</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="DATA GERACAO" source="DateTime: To yyyyMMdd" type="Date" />
+                <Field name="CONTADOR DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="CONTA DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="VALOR DEBITO" size="254" source="Formula: ToNumber([VALOR DEBITO], 1, 1, ',')" type="V_String" />
+                <Field name="CONTADOR CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="CONTA CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="VALOR CREDITO" size="254" source="Formula: ToNumber([VALOR CREDITO], 1, 1, ',')" type="V_String" />
+                <Field name="COSIF DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="COSIF CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="OPERACAO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="41">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="390" y="102" width="811" height="334" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Conta Gráfica - Agrupada por dia, mês e ano</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Conta Gráfica - Agrupada por dia, mês e ano</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="16">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="415" y="248" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="DateTimeYear([DATA GERACAO])" field="Ano" size="1073741823" type="V_WString" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[Ano = DateTimeYear([DATA GERACAO])
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="18">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+                <Position x="547" y="320" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <OrderChanged value="True" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="COSIF CREDITO" selected="False" />
+                    <SelectField field="CONTADOR CREDITO" selected="False" />
+                    <SelectField field="NUM CONTRATO CREDITO" selected="False" />
+                    <SelectField field="DATA GERACAO" selected="True" rename="Data" />
+                    <SelectField field="CONTA CREDITO" selected="False" />
+                    <SelectField field="NOME CONTA CREDITO" selected="False" />
+                    <SelectField field="NOME COSIF CREDITO" selected="False" />
+                    <SelectField field="Ano" selected="True" />
+                    <SelectField field="CONTADOR DEBITO" selected="True" rename="Contador" />
+                    <SelectField field="COSIF DEBITO" selected="True" rename="COSIF" />
+                    <SelectField field="NOME COSIF DEBITO" selected="True" rename="COSIF - Descrição" />
+                    <SelectField field="CONTA DEBITO" selected="True" rename="Conta" />
+                    <SelectField field="NOME CONTA DEBITO" selected="True" rename="Conta - Descrição" />
+                    <SelectField field="NUM CONTRATO DEBITO" selected="True" rename="Contrato" />
+                    <SelectField field="VALOR DEBITO" selected="True" rename="Valor Débito" />
+                    <SelectField field="VALOR CREDITO" selected="True" rename="Valor Crédito" />
+                    <SelectField field="*Unknown" selected="False" />
+                  </SelectFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+            </Node>
+            <Node ToolID="19">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+                <Position x="547" y="151" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <OrderChanged value="True" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="DATA GERACAO" selected="True" rename="Data" />
+                    <SelectField field="CONTADOR DEBITO" selected="False" />
+                    <SelectField field="NUM CONTRATO DEBITO" selected="False" />
+                    <SelectField field="CONTA DEBITO" selected="False" />
+                    <SelectField field="NOME CONTA DEBITO" selected="False" />
+                    <SelectField field="COSIF DEBITO" selected="False" />
+                    <SelectField field="NOME COSIF DEBITO" selected="False" />
+                    <SelectField field="Ano" selected="True" />
+                    <SelectField field="CONTADOR CREDITO" selected="True" rename="Contador" />
+                    <SelectField field="COSIF CREDITO" selected="True" rename="COSIF" />
+                    <SelectField field="NOME COSIF CREDITO" selected="True" rename="COSIF - Descrição" />
+                    <SelectField field="CONTA CREDITO" selected="True" rename="Conta" />
+                    <SelectField field="NOME CONTA CREDITO" selected="True" rename="Conta - Descrição" />
+                    <SelectField field="NUM CONTRATO CREDITO" selected="True" rename="Contrato" />
+                    <SelectField field="VALOR DEBITO" selected="True" rename="Valor Débito" />
+                    <SelectField field="VALOR CREDITO" selected="True" rename="Valor Crédito" />
+                    <SelectField field="*Unknown" selected="False" />
+                  </SelectFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+            </Node>
+            <Node ToolID="20">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+                <Position x="774" y="222" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <ByName_ErrorMode>Warning</ByName_ErrorMode>
+                  <ByName_OutputMode>All</ByName_OutputMode>
+                  <Mode>ByName</Mode>
+                  <SetOutputOrder value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+            </Node>
+            <Node ToolID="21">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="643" y="151" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="0" field="Valor Débito" size="254" type="V_String" enabled="true" />
+                    <FormulaField expression="&quot;C&quot;" field="Tipo" size="1073741823" type="V_WString" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[Valor Débito = 0
+Tipo = "C"
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="22">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="643" y="320" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="0" field="Valor Crédito" size="254" type="V_String" enabled="true" />
+                    <FormulaField expression="&quot;D&quot;" field="Tipo" size="1073741823" type="V_WString" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[Valor Crédito = 0
+Tipo = "D"
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="23">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="883" y="224" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="Left([COSIF], 5)" field="COSIF - Filtro" size="1073741823" type="V_WString" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[COSIF - Filtro = Left([COSIF], 5)
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="24">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+                <Position x="1075" y="224" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <File FileFormat="19" MaxRecords="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</File>
+                  <Passwords />
+                  <Disable>False</Disable>
+                  <FormatSpecificOptions>
+                    <NoSpatialIndex>False</NoSpatialIndex>
+                    <SaveSource>True</SaveSource>
+                    <WriteCompatibleVersion>False</WriteCompatibleVersion>
+                  </FormatSpecificOptions>
+                  <MultiFile value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+            </Node>
+            <Node ToolID="26">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+                <Position x="979" y="224" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Valor Débito" selected="True" type="FixedDecimal" size="18.4" />
+                    <SelectField field="Valor Crédito" selected="True" type="FixedDecimal" size="18.4" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="390" y="462" width="793" height="327" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>Conta Gráfica - Agrupada por mês e ano</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>Conta Gráfica - Agrupada por mês e ano</AnnotationText>
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="44">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="415" y="583" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="DateTimeYear([DATA GERACAO])" field="Ano" size="1073741823" type="V_WString" enabled="true" />
+                    <FormulaField expression="PadLeft(ToString(DateTimeMonth([DATA GERACAO])),2,&quot;0&quot;)" field="Mês" size="1073741823" type="V_WString" enabled="true" />
+                    <FormulaField expression="[Ano] + [Mês]" field="AnoMês" size="1073741823" type="V_WString" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>Ano = DateTimeYear([DATA GERACAO])
+Mês = PadLeft(ToString(DateTimeMonth([DATA GE...</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="48">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="631" y="511" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="0" field="Valor Crédito" size="19.6" type="FixedDecimal" enabled="true" />
+                    <FormulaField expression="&quot;D&quot;" field="Tipo" size="1073741823" type="V_WString" enabled="true" />
+                    <FormulaField expression="[Valor Débito] * -1" field="Valor Débito" size="20.2" type="FixedDecimal" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[Valor Crédito = 0
+Tipo = "D"
+Valor Débito = [Valor Débito] * -1
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="49">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="631" y="656" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="0" field="Valor Débito" size="19.6" type="FixedDecimal" enabled="true" />
+                    <FormulaField expression="&quot;C&quot;" field="Tipo" size="1073741823" type="V_WString" enabled="true" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[Valor Débito = 0
+Tipo = "C"
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="55">
+              <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+                <Position x="535" y="512" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <SummarizeFields>
+                    <SummarizeField field="Ano" action="GroupBy" rename="Ano" />
+                    <SummarizeField field="Mês" action="GroupBy" rename="Mês" />
+                    <SummarizeField field="AnoMês" action="GroupBy" rename="AnoMês" />
+                    <SummarizeField field="NUM CONTRATO DEBITO" action="GroupBy" rename="Contrato" />
+                    <SummarizeField field="CONTA DEBITO" action="GroupBy" rename="Conta" />
+                    <SummarizeField field="NOME CONTA DEBITO" action="GroupBy" rename="Conta - Nome" />
+                    <SummarizeField field="COSIF DEBITO" action="GroupBy" rename="COSIF" />
+                    <SummarizeField field="NOME COSIF DEBITO" action="GroupBy" rename="COSIF - Nome" />
+                    <SummarizeField field="VALOR DEBITO" action="Sum" rename="Valor Débito" />
+                  </SummarizeFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+            </Node>
+            <Node ToolID="56">
+              <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+                <Position x="535" y="656" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <SummarizeFields>
+                    <SummarizeField field="Ano" action="GroupBy" rename="Ano" />
+                    <SummarizeField field="Mês" action="GroupBy" rename="Mês" />
+                    <SummarizeField field="AnoMês" action="GroupBy" rename="AnoMês" />
+                    <SummarizeField field="NUM CONTRATO CREDITO" action="GroupBy" rename="Contrato" />
+                    <SummarizeField field="CONTA CREDITO" action="GroupBy" rename="Conta" />
+                    <SummarizeField field="NOME CONTA CREDITO" action="GroupBy" rename="Conta - Nome" />
+                    <SummarizeField field="COSIF CREDITO" action="GroupBy" rename="COSIF" />
+                    <SummarizeField field="NOME COSIF CREDITO" action="GroupBy" rename="COSIF - Nome" />
+                    <SummarizeField field="VALOR CREDITO" action="Sum" rename="Valor Crédito" />
+                  </SummarizeFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+            </Node>
+            <Node ToolID="60">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+                <Position x="739" y="512" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Mode>Simple</Mode>
+                  <Simple>
+                    <Operator>=</Operator>
+                    <Field>Conta</Field>
+                    <Operands>
+                      <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                      <DateType>fixed</DateType>
+                      <PeriodDate>2025-01-26 12:29:08</PeriodDate>
+                      <PeriodType>
+                      </PeriodType>
+                      <PeriodCount>0</PeriodCount>
+                      <Operand>71300010030016</Operand>
+                      <StartDate>2025-01-26 12:29:08</StartDate>
+                      <EndDate>2025-01-26 12:29:08</EndDate>
+                    </Operands>
+                  </Simple>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>[Conta] = "71300010030016"</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+            </Node>
+            <Node ToolID="61">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+                <Position x="739" y="656" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Mode>Simple</Mode>
+                  <Simple>
+                    <Operator>=</Operator>
+                    <Field>Conta</Field>
+                    <Operands>
+                      <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                      <DateType>fixed</DateType>
+                      <PeriodDate>2025-01-26 12:29:02</PeriodDate>
+                      <PeriodType>
+                      </PeriodType>
+                      <PeriodCount>0</PeriodCount>
+                      <Operand>71300010030016</Operand>
+                      <StartDate>2025-01-26 12:29:02</StartDate>
+                      <EndDate>2025-01-26 12:29:02</EndDate>
+                    </Operands>
+                  </Simple>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>[Conta] = "71300010030016"</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+            </Node>
+            <Node ToolID="63">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+                <Position x="1087" y="572" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <TempFile>C:\Users\JAQUEL~1\AppData\Local\Temp\Alteryx\Engine_19420_3fe8436611414e2d9d082530359582e7_\Engine_19420_65947f9c6b1d4086aa8d8ac309a62dbc~.yxdb</TempFile>
+                  <TempFileDataProfiling />
+                  <Layout>
+                    <ViewMode>Single</ViewMode>
+                    <ViewSize value="100" />
+                    <View1>
+                      <DefaultTab>Profile</DefaultTab>
+                      <Hints>
+                        <Table />
+                      </Hints>
+                    </View1>
+                    <View2 />
+                  </Layout>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+            </Node>
+            <Node ToolID="64">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+                <Position x="895" y="572" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <ByName_ErrorMode>Warning</ByName_ErrorMode>
+                  <ByName_OutputMode>All</ByName_OutputMode>
+                  <Mode>ByName</Mode>
+                  <SetOutputOrder value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+            </Node>
+            <Node ToolID="65">
+              <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+                <Position x="991" y="572" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <SummarizeFields>
+                    <SummarizeField field="Ano" action="GroupBy" rename="Ano" />
+                    <SummarizeField field="Mês" action="GroupBy" rename="Mês" />
+                    <SummarizeField field="AnoMês" action="GroupBy" rename="AnoMês" />
+                    <SummarizeField field="Contrato" action="GroupBy" rename="Contrato" />
+                    <SummarizeField field="Conta" action="GroupBy" rename="Conta" />
+                    <SummarizeField field="Conta - Nome" action="GroupBy" rename="Conta - Nome" />
+                    <SummarizeField field="COSIF" action="GroupBy" rename="COSIF" />
+                    <SummarizeField field="COSIF - Nome" action="GroupBy" rename="COSIF - Nome" />
+                    <SummarizeField field="Valor Débito" action="Sum" rename="Valor Débito" />
+                    <SummarizeField field="Valor Crédito" action="Sum" rename="Valor Crédito" />
+                  </SummarizeFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText />
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+            </Node>
+            <Node ToolID="66">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+                <Position x="1099" y="644" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <File FileFormat="19" MaxRecords="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\Conta Gráfica - Diligência 2018 - Completo (Reorganizado por AnoMes).yxdb</File>
+                  <Passwords />
+                  <Disable>False</Disable>
+                  <FormatSpecificOptions>
+                    <NoSpatialIndex>False</NoSpatialIndex>
+                    <SaveSource>True</SaveSource>
+                    <WriteCompatibleVersion>False</WriteCompatibleVersion>
+                  </FormatSpecificOptions>
+                  <MultiFile value="False" />
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>Conta Gráfica - Diligência 2018 - Completo (Reorganizado por AnoMes).yxdb</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+            </Node>
+          </ChildNodes>
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="42" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="42" Connection="Output" />
+      <Destination ToolID="44" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="18" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="19" Connection="Output" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="20" Connection="Output" />
+      <Destination ToolID="23" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="21" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="22" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="23" Connection="Output" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="44" Connection="Output" />
+      <Destination ToolID="55" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="44" Connection="Output" />
+      <Destination ToolID="56" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="60" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="49" Connection="Output" />
+      <Destination ToolID="61" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="55" Connection="Output" />
+      <Destination ToolID="48" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="56" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
+    </Connection>
+    <Connection name="Débito">
+      <Origin ToolID="60" Connection="True" />
+      <Destination ToolID="64" Connection="Input" />
+    </Connection>
+    <Connection name="Crédito">
+      <Origin ToolID="61" Connection="True" />
+      <Destination ToolID="64" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="64" Connection="Output" />
+      <Destination ToolID="65" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="65" Connection="Output" />
+      <Destination ToolID="63" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="65" Connection="Output" />
+      <Destination ToolID="66" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>toyxdb - Conta Grafica Reorganizada</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="ac6746da-a2a6-465f-9aeb-9ca02f2714ff" />
+      <Telemetry>
+        <PreviousWorkflowId value="a07e4f32-d450-4d54-95e4-609dd22dd77b" />
+        <OriginWorkflowId value="a07e4f32-d450-4d54-95e4-609dd22dd77b" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

@@ -423,6 +423,8 @@ class process_dashboard:
 
             final_final = pd.concat(final_parts, ignore_index=True)
 
+            
+
         final_final.to_csv(path_output, index=False)
 
     def gerar_preprocessado_pis_cofins(
@@ -439,13 +441,13 @@ class process_dashboard:
             encoding="latin1",
             dtype={"NumContrato": "int64"},
         )
+
         contratos_selecionados = self.carrega_contratos_selecionados(path_contratos)
         if contratos_selecionados:
 
             mask = dashboard["NumContrato"].isin(contratos_selecionados)
 
             dashboard = dashboard.loc[mask].copy()
-        
 
         final_parts: list[pd.DataFrame] = []
 
@@ -468,7 +470,11 @@ class process_dashboard:
             ]
             final = pd.concat(blocos, ignore_index=True)
 
-            final = self.calcula_pis_cofins(final)
+            df_pis_cofins = self.calcula_pis_cofins(final)
+
+            final = pd.concat([final, df_pis_cofins], ignore_index=True)
+
+            final = final[['Ano', 'Descrição', 'Conta_Nome', 'Cosif_Nome', 'ValorCredito', 'Movimentacao']]
             final["NumContrato"] = contrato
 
             final_parts.append(final)
@@ -622,8 +628,10 @@ class process_dashboard:
                 contratos_processados = self.carrega_contratos_processados(path_processados)
             except PermissionError:
                 contratos_processados = self.grava_contratos_processados(path_processados, path_preprocessado.parent / "numeros_processados.txt")
-            mask = dashboard["NumContrato"].isin(contratos_processados)
-            dashboard = dashboard.loc[mask].copy()
+            
+            if len(contratos_processados) > 0:
+                mask = dashboard["NumContrato"].isin(contratos_processados)
+                dashboard = dashboard.loc[mask].copy()
 
         contratos = sorted(dashboard["NumContrato"].unique().tolist())
 
@@ -679,8 +687,10 @@ class process_dashboard:
                 contratos_processados = self.carrega_contratos_processados(path_processados)
             except PermissionError:
                 contratos_processados = self.grava_contratos_processados(path_processados, path_preprocessado.parent / "numeros_processados.txt")
-            mask = dashboard["NumContrato"].isin(contratos_processados)
-            dashboard = dashboard.loc[mask].copy()
+                
+            if len(contratos_processados) > 0:
+                mask = dashboard["NumContrato"].isin(contratos_processados)
+                dashboard = dashboard.loc[mask].copy()
 
         contratos = sorted(dashboard["NumContrato"].unique().tolist())
 
