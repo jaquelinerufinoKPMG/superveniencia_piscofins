@@ -34,7 +34,7 @@ STATUS_COLS = [
 ]
 
 
-class anexo_b:
+class resumo_piscofins:
     def __init__(self):
         pass
 
