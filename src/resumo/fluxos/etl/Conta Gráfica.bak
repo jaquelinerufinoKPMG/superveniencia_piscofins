@@ -3,7 +3,7 @@
   <Nodes>
     <Node ToolID="48">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="691" y="127" />
+        <Position x="642" y="102" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -25,7 +25,7 @@
     </Node>
     <Node ToolID="49">
       <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
-        <Position x="835" y="127" />
+        <Position x="786" y="102" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -46,7 +46,7 @@ Custom</DefaultAnnotationText>
     </Node>
     <Node ToolID="47">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="979" y="127" />
+        <Position x="930" y="102" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -69,18 +69,17 @@ Custom</DefaultAnnotationText>
     </Node>
     <Node ToolID="46">
       <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="1171" y="127" />
+        <Position x="1122" y="102" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <File MaxRecords="" FileFormat="19">C:\_projects\dev\superveniencia_csll\data\input\resumo\Conta_grafica.yxdb</File>
+          <File FileFormat="19" MaxRecords="">C:\analysis\itau\databases\Conta Grafica - Diligencia 2017 - Completo.yxdb</File>
           <Passwords />
           <Disable>False</Disable>
           <FormatSpecificOptions>
-            <WriteCompatibleVersion>False</WriteCompatibleVersion>
             <NoSpatialIndex>False</NoSpatialIndex>
             <SaveSource>True</SaveSource>
-            <SuppressBlankFile>False</SuppressBlankFile>
+            <WriteCompatibleVersion>False</WriteCompatibleVersion>
           </FormatSpecificOptions>
           <MultiFile value="True" />
           <MultiFileType>FileName</MultiFileType>
@@ -89,18 +88,15 @@ Custom</DefaultAnnotationText>
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
-          <DefaultAnnotationText>Conta_grafica.yxdb</DefaultAnnotationText>
+          <DefaultAnnotationText>Conta Grafica - Diligencia 2017 - Completo.yxdb</DefaultAnnotationText>
           <Left value="False" />
         </Annotation>
-        <Dependencies>
-          <Implicit />
-        </Dependencies>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
     </Node>
     <Node ToolID="55">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="54" y="54" width="301" height="229" />
+        <Position x="5" y="29" width="301" height="229" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -119,49 +115,48 @@ Custom</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="45">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-            <Position x="79" y="103" />
+            <Position x="30" y="78" />
           </GuiSettings>
           <Properties>
             <Configuration>
               <Passwords />
-              <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="0">C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv</File>
+              <File RecordLimit="" SearchSubDirs="False" FileFormat="0" OutputFileName="">C:\analysis\itau\raw\Conta Grafica.csv</File>
               <FormatSpecificOptions>
-                <CodePage>28591</CodePage>
-                <Delimeter>;</Delimeter>
-                <IgnoreErrors>False</IgnoreErrors>
-                <FieldLen>254</FieldLen>
-                <AllowShareWrite>False</AllowShareWrite>
                 <HeaderRow>True</HeaderRow>
-                <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+                <IgnoreErrors>False</IgnoreErrors>
+                <AllowShareWrite>False</AllowShareWrite>
                 <ImportLine>1</ImportLine>
+                <FieldLen>254</FieldLen>
+                <SingleThreadRead>False</SingleThreadRead>
+                <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+                <Delimeter>;</Delimeter>
+                <QuoteRecordBreak>False</QuoteRecordBreak>
+                <CodePage>28591</CodePage>
               </FormatSpecificOptions>
             </Configuration>
             <Annotation DisplayMode="0">
               <Name />
-              <DefaultAnnotationText>Nova Base Diligencia 2014_v2.csv</DefaultAnnotationText>
+              <DefaultAnnotationText>Conta Grafica.csv</DefaultAnnotationText>
               <Left value="False" />
             </Annotation>
-            <Dependencies>
-              <Implicit />
-            </Dependencies>
             <MetaInfo connection="Output">
               <RecordInfo>
-                <Field name="Field_1" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_2" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_3" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_4" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_5" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_6" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_7" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_8" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_9" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_10" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_11" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_12" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_13" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_14" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_15" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_16" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
+                <Field name="DATA GERACAO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="Field_16" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
               </RecordInfo>
             </MetaInfo>
           </Properties>
@@ -169,11 +164,11 @@ Custom</DefaultAnnotationText>
         </Node>
         <Node ToolID="51">
           <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-            <Position x="79" y="199" />
+            <Position x="30" y="174" />
           </GuiSettings>
           <Properties>
             <Configuration>
-              <NumRows value="1" />
+              <NumRows value="0" />
               <Fields>
                 <Field name="DATA GERACAO" />
                 <Field name="CONTADOR DEBITO" />
@@ -191,25 +186,7 @@ Custom</DefaultAnnotationText>
                 <Field name="COSIF CREDITO" />
                 <Field name="NOME COSIF CREDITO" />
               </Fields>
-              <Data>
-                <r>
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c />
-                  <c>data\input\anexo_b\Nova Base Diligencia 2014_v2.csv</c>
-                </r>
-              </Data>
+              <Data />
             </Configuration>
             <Annotation DisplayMode="0">
               <Name>Columns Names</Name>
@@ -221,7 +198,7 @@ Custom</DefaultAnnotationText>
         </Node>
         <Node ToolID="52">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
-            <Position x="271" y="115" />
+            <Position x="222" y="90" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -258,22 +235,22 @@ Custom</DefaultAnnotationText>
             </Annotation>
             <MetaInfo connection="Output">
               <RecordInfo>
-                <Field name="DATA GERACAO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="CONTADOR DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="CONTA DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="VALOR DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="CONTADOR CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="CONTA CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="VALOR CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="COSIF DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="COSIF CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Field_16" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
+                <Field name="DATA GERACAO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTADOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="VALOR CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
+                <Field name="Field_16" size="254" source="File: C:\analysis\itau\raw\Conta Grafica.csv" type="V_String" />
               </RecordInfo>
             </MetaInfo>
           </Properties>
@@ -283,7 +260,7 @@ Custom</DefaultAnnotationText>
     </Node>
     <Node ToolID="56">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="378" y="78" width="241" height="205" />
+        <Position x="329" y="53" width="241" height="205" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -302,7 +279,7 @@ Custom</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="53">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
-            <Position x="535" y="127" />
+            <Position x="486" y="102" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -327,7 +304,7 @@ Custom</DefaultAnnotationText>
         </Node>
         <Node ToolID="54">
           <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-            <Position x="403" y="199" />
+            <Position x="354" y="174" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -337,7 +314,7 @@ Custom</DefaultAnnotationText>
               </Fields>
               <Data>
                 <r>
-                  <c>Conta Gráfica - Diligência 2014 - Completo - Teste</c>
+                  <c>Conta Gráfica - Diligência 2017 - Completo - Teste.yxdb</c>
                 </r>
               </Data>
             </Configuration>
@@ -408,7 +385,7 @@ Custom</DefaultAnnotationText>
     <IsTemplate value="False" />
     <MetaInfo>
       <NameIsFileName value="True" />
-      <Name>Conta Gráfica</Name>
+      <Name>toyxdb</Name>
       <Description />
       <RootToolName />
       <ToolVersion />
@@ -423,9 +400,9 @@ Custom</DefaultAnnotationText>
         <Description />
         <File />
       </Example>
-      <WorkflowId value="d0f8544f-cfdf-42c5-b1ed-d5884a216b60" />
+      <WorkflowId value="46cc0b56-5e17-44b0-a905-123aaac618aa" />
       <Telemetry>
-        <PreviousWorkflowId value="46cc0b56-5e17-44b0-a905-123aaac618aa" />
+        <PreviousWorkflowId value="eee49e12-9452-4336-8ee5-8d2cb209e2a8" />
         <OriginWorkflowId value="eee49e12-9452-4336-8ee5-8d2cb209e2a8" />
       </Telemetry>
       <PlatformWorkflowId value="" />

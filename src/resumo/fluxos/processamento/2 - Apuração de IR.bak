@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<AlteryxDocument yxmdVer="2025.2" RunE2="T">
+<AlteryxDocument yxmdVer="2024.2" RunE2="T">
   <Nodes>
     <Node ToolID="224">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="4206" y="1096" width="991" height="1085" />
+        <Position x="4205" y="1096" width="991" height="1085" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -22,7 +22,7 @@
       <ChildNodes>
         <Node ToolID="22">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="4362" y="1673" width="807" height="205" />
+            <Position x="4361" y="1673" width="807" height="205" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -41,7 +41,7 @@
           <ChildNodes>
             <Node ToolID="11">
               <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
-                <Position x="4735" y="1722" />
+                <Position x="4734" y="1722" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -377,7 +377,7 @@
             </Node>
             <Node ToolID="20">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="4951" y="1722" />
+                <Position x="4950" y="1722" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -397,7 +397,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="56">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="5047" y="1722" />
+                <Position x="5046" y="1722" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -424,7 +424,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="17">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4387" y="1794" />
+                <Position x="4386" y="1794" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -447,7 +447,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="18">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4387" y="1722" />
+                <Position x="4386" y="1722" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -469,7 +469,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="27">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="4615" y="1722" />
+                <Position x="4614" y="1722" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -488,7 +488,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="95">
               <GuiSettings Plugin="AlteryxBasePluginsGui.MultiFieldFormula.MultiFieldFormula">
-                <Position x="4843" y="1722" />
+                <Position x="4842" y="1722" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -816,7 +816,7 @@ Conta - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="85">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="4350" y="1145" width="795" height="217" />
+            <Position x="4349" y="1145" width="795" height="217" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -835,7 +835,7 @@ Conta - Ascending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="75">
               <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
-                <Position x="4699" y="1194" />
+                <Position x="4698" y="1194" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -861,7 +861,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="76">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="4915" y="1194" />
+                <Position x="4914" y="1194" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -881,7 +881,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="78">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="5023" y="1194" />
+                <Position x="5022" y="1194" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -908,7 +908,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="79">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4375" y="1278" />
+                <Position x="4374" y="1278" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -931,7 +931,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="80">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4375" y="1230" />
+                <Position x="4374" y="1230" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -953,7 +953,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="83">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="4579" y="1194" />
+                <Position x="4578" y="1194" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -972,7 +972,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="277">
               <GuiSettings Plugin="AlteryxBasePluginsGui.MultiFieldFormula.MultiFieldFormula">
-                <Position x="4807" y="1194" />
+                <Position x="4806" y="1194" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -997,7 +997,7 @@ Conta - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="87">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="4362" y="1889" width="810" height="267" />
+            <Position x="4361" y="1889" width="810" height="267" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -1016,7 +1016,7 @@ Conta - Ascending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="57">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="4387" y="1950" />
+                <Position x="4386" y="1950" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1033,7 +1033,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="58">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="4567" y="1938" />
+                <Position x="4566" y="1938" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1054,7 +1054,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="59">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4495" y="1938" />
+                <Position x="4494" y="1938" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1075,7 +1075,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="60">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4567" y="2070" />
+                <Position x="4566" y="2070" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1097,7 +1097,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="61">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="4687" y="2010" />
+                <Position x="4686" y="2010" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1116,7 +1116,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="62">
               <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
-                <Position x="4783" y="2010" />
+                <Position x="4782" y="2010" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1317,7 +1317,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="64">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="4975" y="2010" />
+                <Position x="4974" y="2010" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1337,7 +1337,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="65">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="5083" y="2010" />
+                <Position x="5082" y="2010" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1364,7 +1364,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="98">
               <GuiSettings Plugin="AlteryxBasePluginsGui.MultiFieldFormula.MultiFieldFormula">
-                <Position x="4879" y="2010" />
+                <Position x="4878" y="2010" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1448,7 +1448,7 @@ Conta - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="88">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="4362" y="1392" width="781" height="282" />
+            <Position x="4361" y="1392" width="781" height="282" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -1467,7 +1467,7 @@ Conta - Ascending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="67">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="4483" y="1518" />
+                <Position x="4482" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1488,7 +1488,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="68">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4387" y="1518" />
+                <Position x="4386" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1509,7 +1509,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="69">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="4387" y="1590" />
+                <Position x="4386" y="1590" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1531,7 +1531,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="70">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="4615" y="1518" />
+                <Position x="4614" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1550,7 +1550,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="71">
               <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
-                <Position x="4735" y="1518" />
+                <Position x="4734" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1886,7 +1886,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="73">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="4951" y="1518" />
+                <Position x="4950" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1906,7 +1906,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="74">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="5059" y="1518" />
+                <Position x="5058" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -1933,7 +1933,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="276">
               <GuiSettings Plugin="AlteryxBasePluginsGui.MultiFieldFormula.MultiFieldFormula">
-                <Position x="4843" y="1518" />
+                <Position x="4842" y="1518" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2261,7 +2261,7 @@ Conta - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="275">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="4231" y="1194" />
+            <Position x="4230" y="1194" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -2283,7 +2283,7 @@ Conta - Ascending</DefaultAnnotationText>
     </Node>
     <Node ToolID="278">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="1002" y="278" width="2844" height="2941" />
+        <Position x="1001" y="280" width="2844" height="2939" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -2302,7 +2302,7 @@ Conta - Ascending</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="225">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="1698" y="1677" width="1163" height="404" />
+            <Position x="1697" y="1677" width="1163" height="404" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -2321,7 +2321,7 @@ Conta - Ascending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="117">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2275" y="1746" />
+                <Position x="2274" y="1746" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2343,7 +2343,7 @@ Conta - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="114">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="2731" y="1818" />
+                <Position x="2730" y="1818" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2390,7 +2390,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="118">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2371" y="1746" />
+                <Position x="2370" y="1746" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2411,7 +2411,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="119">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="2503" y="1818" />
+                <Position x="2502" y="1818" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2453,7 +2453,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="116">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="2155" y="1818" />
+                <Position x="2154" y="1818" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2473,7 +2473,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="104">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="1723" y="1818" />
+                <Position x="1722" y="1818" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2494,7 +2494,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="106">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2047" y="1818" />
+                <Position x="2046" y="1818" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2517,7 +2517,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="254">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="1723" y="1889" />
+                <Position x="1722" y="1889" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2536,7 +2536,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="255">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="1819" y="1890" />
+                <Position x="1818" y="1890" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2558,11 +2558,11 @@ Despesa de Depreciação...</DefaultAnnotationText>
             </Node>
             <Node ToolID="256">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="1939" y="1818" />
+                <Position x="1938" y="1818" />
               </GuiSettings>
               <Properties>
                 <Configuration>
-                  <ByName_ErrorMode>Ignore</ByName_ErrorMode>
+                  <ByName_ErrorMode>Warning</ByName_ErrorMode>
                   <ByName_OutputMode>All</ByName_OutputMode>
                   <Mode>ByName</Mode>
                   <SetOutputOrder value="False" />
@@ -2579,7 +2579,7 @@ Despesa de Depreciação...</DefaultAnnotationText>
         </Node>
         <Node ToolID="226">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="1614" y="1265" width="1271" height="369" />
+            <Position x="1613" y="1265" width="1271" height="369" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -2598,7 +2598,7 @@ Despesa de Depreciação...</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="142">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="2395" y="1386" />
+                <Position x="2394" y="1386" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2617,7 +2617,7 @@ Despesa de Depreciação...</DefaultAnnotationText>
             </Node>
             <Node ToolID="143">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="2755" y="1386" />
+                <Position x="2754" y="1386" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2644,7 +2644,7 @@ Despesa de Depreciação...</DefaultAnnotationText>
             </Node>
             <Node ToolID="140">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2143" y="1314" />
+                <Position x="2142" y="1314" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2663,7 +2663,7 @@ Despesa de Depreciação...</DefaultAnnotationText>
             </Node>
             <Node ToolID="141">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2239" y="1314" />
+                <Position x="2238" y="1314" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2682,7 +2682,7 @@ Despesa de Depreciação...</DefaultAnnotationText>
             </Node>
             <Node ToolID="139">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="2635" y="1386" />
+                <Position x="2634" y="1386" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2704,7 +2704,7 @@ COSIF - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="136">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2011" y="1386" />
+                <Position x="2010" y="1386" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2726,7 +2726,7 @@ COSIF - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="134">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="1639" y="1397" />
+                <Position x="1638" y="1397" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2743,7 +2743,7 @@ COSIF - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="179">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="2515" y="1386" />
+                <Position x="2514" y="1386" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2769,7 +2769,7 @@ COSIF - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="251">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="1639" y="1458" />
+                <Position x="1638" y="1458" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2788,7 +2788,7 @@ COSIF - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="252">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="1747" y="1458" />
+                <Position x="1746" y="1458" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2810,7 +2810,7 @@ COSIF - Descrição = "RENDAS DE ARRENDAM.FIN...</DefaultAnnotationText>
             </Node>
             <Node ToolID="253">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="1879" y="1386" />
+                <Position x="1878" y="1386" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2831,7 +2831,7 @@ COSIF - Descrição = "RENDAS DE ARRENDAM.FIN...</DefaultAnnotationText>
         </Node>
         <Node ToolID="228">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="2370" y="2477" width="936" height="312" />
+            <Position x="2369" y="2477" width="936" height="312" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -2850,7 +2850,7 @@ COSIF - Descrição = "RENDAS DE ARRENDAM.FIN...</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="111">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="3175" y="2598" />
+                <Position x="3174" y="2598" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2877,7 +2877,7 @@ COSIF - Descrição = "RENDAS DE ARRENDAM.FIN...</DefaultAnnotationText>
             </Node>
             <Node ToolID="120">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2395" y="2598" />
+                <Position x="2394" y="2598" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2899,11 +2899,11 @@ Adições - Descontos Concedidos = [Descontos Con...</DefaultAnnotationText>
             </Node>
             <Node ToolID="123">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="2803" y="2598" />
+                <Position x="2802" y="2598" />
               </GuiSettings>
               <Properties>
                 <Configuration>
-                  <ByName_ErrorMode>Ignore</ByName_ErrorMode>
+                  <ByName_ErrorMode>Warning</ByName_ErrorMode>
                   <ByName_OutputMode>All</ByName_OutputMode>
                   <Mode>ByName</Mode>
                   <SetOutputOrder value="False" />
@@ -2918,11 +2918,11 @@ Adições - Descontos Concedidos = [Descontos Con...</DefaultAnnotationText>
             </Node>
             <Node ToolID="124">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="3043" y="2598" />
+                <Position x="3042" y="2598" />
               </GuiSettings>
               <Properties>
                 <Configuration>
-                  <SortInfo locale="0">
+                  <SortInfo>
                     <Field field="Contrato" order="Ascending" />
                     <Field field="Ano" order="Ascending" />
                   </SortInfo>
@@ -2938,7 +2938,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="125">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="2923" y="2598" />
+                <Position x="2922" y="2598" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2968,7 +2968,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="121">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2539" y="2526" />
+                <Position x="2538" y="2526" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -2990,7 +2990,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="122">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2659" y="2526" />
+                <Position x="2658" y="2526" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3011,7 +3011,7 @@ Ano - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="227">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="2142" y="2129" width="1356" height="312" />
+            <Position x="2141" y="2129" width="1356" height="312" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -3030,7 +3030,7 @@ Ano - Ascending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="150">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2767" y="2178" />
+                <Position x="2766" y="2178" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3052,7 +3052,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="151">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2863" y="2178" />
+                <Position x="2862" y="2178" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3071,7 +3071,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="152">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="3007" y="2250" />
+                <Position x="3006" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3090,7 +3090,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="153">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="3127" y="2250" />
+                <Position x="3126" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3110,7 +3110,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="167">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="3247" y="2250" />
+                <Position x="3246" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3136,7 +3136,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="149">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2635" y="2250" />
+                <Position x="2634" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3159,7 +3159,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="148">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2527" y="2250" />
+                <Position x="2526" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3183,7 +3183,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="169">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="3367" y="2250" />
+                <Position x="3366" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3210,7 +3210,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="177">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2167" y="2262" />
+                <Position x="2166" y="2262" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3230,7 +3230,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="178">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
-                <Position x="2275" y="2250" />
+                <Position x="2274" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration joinByRecordPos="False">
@@ -3264,7 +3264,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="245">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="2407" y="2250" />
+                <Position x="2406" y="2250" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3285,13 +3285,13 @@ d = [a]+...</DefaultAnnotationText>
         </Node>
         <Node ToolID="222">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="1566" y="327" width="1693" height="496" />
+            <Position x="1565" y="329" width="1693" height="802" />
           </GuiSettings>
           <Properties>
             <Configuration>
               <Caption>Quadro 1 - Dados Contratuais x Registro Contábil</Caption>
               <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
-              <Disabled value="True" />
+              <Disabled value="False" />
               <Folded value="False" />
             </Configuration>
             <Annotation DisplayMode="0">
@@ -3304,7 +3304,7 @@ d = [a]+...</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="215">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2803" y="486" />
+                <Position x="2802" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3326,7 +3326,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="216">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="2659" y="486" />
+                <Position x="2658" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3347,7 +3347,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="217">
               <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-                <Position x="3067" y="414" />
+                <Position x="3066" y="414" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3375,7 +3375,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="218">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="2371" y="486" />
+                <Position x="2370" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3394,7 +3394,7 @@ d = [a]+...</DefaultAnnotationText>
             </Node>
             <Node ToolID="219">
               <GuiSettings>
-                <Position x="2503" y="486" />
+                <Position x="2502" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3417,12 +3417,15 @@ d = [a]+...</DefaultAnnotationText>
                   <DefaultAnnotationText />
                   <Left value="False" />
                 </Annotation>
+                <Dependencies>
+                  <Implicit />
+                </Dependencies>
               </Properties>
               <EngineSettings Macro="Cleanse.yxmc" />
             </Node>
             <Node ToolID="220">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="2947" y="486" />
+                <Position x="2946" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3442,7 +3445,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="221">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="3067" y="486" />
+                <Position x="3066" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3469,7 +3472,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="223">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="1591" y="401" />
+                <Position x="1590" y="401" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3488,7 +3491,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="201">
               <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-                <Position x="3054" y="629" width="174" height="133" />
+                <Position x="3053" y="629" width="174" height="195" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3507,7 +3510,7 @@ COSIF - Descending</DefaultAnnotationText>
               <ChildNodes>
                 <Node ToolID="200">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                    <Position x="3079" y="678" />
+                    <Position x="3078" y="678" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3536,7 +3539,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="203">
               <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-                <Position x="3054" y="665" width="180" height="133" />
+                <Position x="3053" y="665" width="180" height="195" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3555,7 +3558,7 @@ COSIF - Descending</DefaultAnnotationText>
               <ChildNodes>
                 <Node ToolID="202">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                    <Position x="3079" y="714" />
+                    <Position x="3078" y="714" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3581,14 +3584,14 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="214">
               <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-                <Position x="1758" y="664" width="114" height="24" />
+                <Position x="1757" y="665" width="421" height="441" />
               </GuiSettings>
               <Properties>
                 <Configuration>
                   <Caption>Testes</Caption>
                   <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
                   <Disabled value="True" />
-                  <Folded value="True" />
+                  <Folded value="False" />
                 </Configuration>
                 <Annotation DisplayMode="0">
                   <Name />
@@ -3600,7 +3603,7 @@ COSIF - Descending</DefaultAnnotationText>
               <ChildNodes>
                 <Node ToolID="204">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                    <Position x="1843" y="725" />
+                    <Position x="1842" y="726" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3631,7 +3634,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="205">
                   <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                    <Position x="1975" y="713" />
+                    <Position x="1974" y="714" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3651,7 +3654,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="206">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                    <Position x="1843" y="833" />
+                    <Position x="1842" y="834" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3682,7 +3685,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="207">
                   <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                    <Position x="1975" y="821" />
+                    <Position x="1974" y="822" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3701,7 +3704,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="208">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
-                    <Position x="1975" y="965" />
+                    <Position x="1974" y="966" />
                   </GuiSettings>
                   <Properties>
                     <Configuration joinByRecordPos="False">
@@ -3733,7 +3736,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="209">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-                    <Position x="1783" y="989" />
+                    <Position x="1782" y="990" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3751,7 +3754,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="210">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-                    <Position x="2071" y="965" />
+                    <Position x="2070" y="966" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3768,7 +3771,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="211">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                    <Position x="1879" y="989" />
+                    <Position x="1878" y="990" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3789,7 +3792,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="212">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-                    <Position x="2095" y="713" />
+                    <Position x="2094" y="714" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3813,7 +3816,7 @@ COSIF - Descending</DefaultAnnotationText>
                 </Node>
                 <Node ToolID="213">
                   <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-                    <Position x="2095" y="821" />
+                    <Position x="2094" y="822" />
                   </GuiSettings>
                   <Properties>
                     <Configuration>
@@ -3839,7 +3842,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="194">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="1735" y="400" />
+                <Position x="1734" y="402" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3856,7 +3859,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="195">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="1927" y="389" />
+                <Position x="1926" y="389" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3887,7 +3890,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="196">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2203" y="377" />
+                <Position x="2202" y="377" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3907,7 +3910,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="197">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Rank.Rank">
-                <Position x="2071" y="376" />
+                <Position x="2070" y="377" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3931,7 +3934,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="189">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2191" y="486" />
+                <Position x="2190" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3951,7 +3954,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="190">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Rank.Rank">
-                <Position x="2071" y="486" />
+                <Position x="2070" y="486" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -3973,7 +3976,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="274">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="1927" y="498" />
+                <Position x="1926" y="498" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4004,7 +4007,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="182">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="1927" y="605" />
+                <Position x="1926" y="606" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4034,7 +4037,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="185">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Rank.Rank">
-                <Position x="2071" y="594" />
+                <Position x="2070" y="594" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4058,7 +4061,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="184">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="2191" y="594" />
+                <Position x="2190" y="594" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4080,7 +4083,7 @@ COSIF - Descending</DefaultAnnotationText>
         </Node>
         <Node ToolID="86">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="2658" y="2837" width="1163" height="357" />
+            <Position x="2657" y="2837" width="1163" height="357" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4099,7 +4102,7 @@ COSIF - Descending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="159">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="3115" y="2886" />
+                <Position x="3114" y="2886" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4121,7 +4124,7 @@ COSIF - Descending</DefaultAnnotationText>
             </Node>
             <Node ToolID="156">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="2803" y="2958" />
+                <Position x="2802" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4141,7 +4144,7 @@ SUPERVENIÊNCIA...</DefaultAnnotationText>
             </Node>
             <Node ToolID="157">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="3019" y="2958" />
+                <Position x="3018" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4164,7 +4167,7 @@ SUPERVENIÊNCIA...</DefaultAnnotationText>
             </Node>
             <Node ToolID="161">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="3355" y="2958" />
+                <Position x="3354" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4183,7 +4186,7 @@ SUPERVENIÊNCIA...</DefaultAnnotationText>
             </Node>
             <Node ToolID="162">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="3691" y="2958" />
+                <Position x="3690" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4210,7 +4213,7 @@ SUPERVENIÊNCIA...</DefaultAnnotationText>
             </Node>
             <Node ToolID="164">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-                <Position x="3583" y="2958" />
+                <Position x="3582" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4230,7 +4233,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="165">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="3475" y="2958" />
+                <Position x="3474" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4256,7 +4259,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="168">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
-                <Position x="2683" y="2958" />
+                <Position x="2682" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration joinByRecordPos="False">
@@ -4296,7 +4299,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="158">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="2911" y="2958" />
+                <Position x="2910" y="2958" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4326,7 +4329,7 @@ Ano - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="160">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="3235" y="2886" />
+                <Position x="3234" y="2886" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -4347,7 +4350,7 @@ Ano - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="3">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="1422" y="1194" />
+            <Position x="1350" y="1194" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4372,7 +4375,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="130">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
-            <Position x="1326" y="1194" />
+            <Position x="1242" y="1194" />
           </GuiSettings>
           <Properties>
             <Configuration joinByRecordPos="False">
@@ -4404,7 +4407,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="131">
           <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
-            <Position x="1027" y="1204" />
+            <Position x="1026" y="1205" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4762,7 +4765,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="132">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="1134" y="1206" />
+            <Position x="1134" y="1205" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4785,7 +4788,7 @@ COSIF - Nível...</DefaultAnnotationText>
     </Node>
     <Node ToolID="282">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="871" y="198" width="222" height="24" />
+        <Position x="870" y="198" width="222" height="24" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -4804,7 +4807,7 @@ COSIF - Nível...</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="283">
           <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-            <Position x="1135" y="342" />
+            <Position x="1134" y="342" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4829,7 +4832,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="284">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="1015" y="342" />
+            <Position x="1014" y="342" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4853,7 +4856,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="285">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-            <Position x="895" y="354" />
+            <Position x="894" y="354" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4884,7 +4887,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="287">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="1219" y="270" />
+            <Position x="1218" y="270" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4903,7 +4906,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="288">
           <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-            <Position x="1303" y="270" />
+            <Position x="1302" y="270" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4928,7 +4931,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="289">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-            <Position x="1399" y="342" />
+            <Position x="1398" y="342" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4947,7 +4950,7 @@ COSIF - Nível...</DefaultAnnotationText>
         </Node>
         <Node ToolID="290">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
-            <Position x="1483" y="342" />
+            <Position x="1482" y="342" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4967,7 +4970,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="293">
           <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-            <Position x="1603" y="522" />
+            <Position x="1602" y="522" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -4990,7 +4993,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="294">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-            <Position x="1699" y="522" />
+            <Position x="1698" y="522" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5017,7 +5020,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="295">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="1579" y="246" width="156" height="66" />
+            <Position x="1578" y="246" width="156" height="66" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5035,7 +5038,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="291">
               <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-                <Position x="1603" y="294" />
+                <Position x="1602" y="294" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -5063,7 +5066,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
             </Node>
             <Node ToolID="292">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="1603" y="390" />
+                <Position x="1602" y="390" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -5097,7 +5100,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
     </Node>
     <Node ToolID="269">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="871" y="246" width="271" height="24" />
+        <Position x="870" y="246" width="271" height="24" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -5116,7 +5119,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="259">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-            <Position x="1939" y="378" />
+            <Position x="1938" y="378" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5143,7 +5146,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="263">
           <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-            <Position x="1747" y="378" />
+            <Position x="1746" y="378" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5164,7 +5167,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="264">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-            <Position x="1039" y="402" />
+            <Position x="1038" y="402" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5181,7 +5184,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="265">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="1843" y="378" />
+            <Position x="1842" y="378" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5205,7 +5208,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="266">
           <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-            <Position x="1003" y="294" />
+            <Position x="1002" y="294" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5225,7 +5228,7 @@ Período de Apuração - Ascending</DefaultAnnotationText>
         </Node>
         <Node ToolID="267">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="1135" y="294" />
+            <Position x="1134" y="294" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5247,7 +5250,7 @@ COSIF - Descrição = "RENDAS DE ARRENDAM.FIN...</DefaultAnnotationText>
         </Node>
         <Node ToolID="268">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-            <Position x="1291" y="390" />
+            <Position x="1290" y="390" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5266,7 +5269,7 @@ COSIF - Descrição = "RENDAS DE ARRENDAM.FIN...</DefaultAnnotationText>
         </Node>
         <Node ToolID="270">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="1531" y="378" />
+            <Position x="1530" y="378" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5290,7 +5293,7 @@ Até 30/03/2013 =...</DefaultAnnotationText>
         </Node>
         <Node ToolID="273">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="895" y="402" />
+            <Position x="894" y="402" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5310,7 +5313,7 @@ Até 30/03/2013 =...</DefaultAnnotationText>
         </Node>
         <Node ToolID="280">
           <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-            <Position x="1651" y="414" />
+            <Position x="1650" y="414" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5340,7 +5343,7 @@ Até 30/03/2013 =...</DefaultAnnotationText>
     </Node>
     <Node ToolID="241">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="54" y="171" width="543" height="469" />
+        <Position x="53" y="171" width="543" height="469" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -5359,7 +5362,7 @@ Até 30/03/2013 =...</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="279">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="79" y="424" width="182" height="133" />
+            <Position x="78" y="424" width="182" height="133" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5378,7 +5381,7 @@ Até 30/03/2013 =...</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="129">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-                <Position x="104" y="473" />
+                <Position x="103" y="473" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -5415,7 +5418,7 @@ Até 30/03/2013 =...</DefaultAnnotationText>
         </Node>
         <Node ToolID="272">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="465" y="449" />
+            <Position x="464" y="449" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5442,7 +5445,7 @@ Período de Ap...</DefaultAnnotationText>
         </Node>
         <Node ToolID="235">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-            <Position x="357" y="449" />
+            <Position x="356" y="449" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5461,7 +5464,7 @@ Período de Ap...</DefaultAnnotationText>
         </Node>
         <Node ToolID="281">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="79" y="220" width="156" height="133" />
+            <Position x="78" y="220" width="156" height="133" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5479,29 +5482,32 @@ Período de Ap...</DefaultAnnotationText>
           <ChildNodes>
             <Node ToolID="92">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-                <Position x="104" y="269" />
+                <Position x="103" y="269" />
               </GuiSettings>
               <Properties>
                 <Configuration>
                   <Passwords />
-                  <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\_projects\dev\superveniencia_csll\data\input\resumo\Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</File>
+                  <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\dev\Itau\Alteryx\Alteryx Databases\Conta Gráfica - Diligência 2014 - Completo (Reorganizado).yxdb</File>
                   <FormatSpecificOptions />
                 </Configuration>
                 <Annotation DisplayMode="0">
                   <Name />
-                  <DefaultAnnotationText>Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</DefaultAnnotationText>
+                  <DefaultAnnotationText>Conta Gráfica - Diligência 2014 - Completo (Reorganizado).yxdb</DefaultAnnotationText>
                   <Left value="False" />
                 </Annotation>
+                <Dependencies>
+                  <Implicit />
+                </Dependencies>
                 <MetaInfo connection="Output">
                   <RecordInfo>
-                    <Field name="Data" size="254" source="Formula: DateTimeParse([DATA GERACAO],&quot;%Y%m%d&quot;)" type="V_String" />
+                    <Field name="Data" source="DateTime: To yyyyMMdd" type="Date" />
                     <Field name="Ano" size="1073741823" source="Formula: DateTimeYear([DATA GERACAO])" type="V_WString" />
-                    <Field name="Contador" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                    <Field name="COSIF" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                    <Field name="COSIF - Descrição" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                    <Field name="Conta" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                    <Field name="Conta - Descrição" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                    <Field name="Contrato" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
+                    <Field name="Contador" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\Alteryx\Originais\Conta Gráfica 2014\Conta Gráfica 2014.TXT" type="V_String" />
+                    <Field name="COSIF" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\Alteryx\Originais\Conta Gráfica 2014\Conta Gráfica 2014.TXT" type="V_String" />
+                    <Field name="COSIF - Descrição" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\Alteryx\Originais\Conta Gráfica 2014\Conta Gráfica 2014.TXT" type="V_String" />
+                    <Field name="Conta" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\Alteryx\Originais\Conta Gráfica 2014\Conta Gráfica 2014.TXT" type="V_String" />
+                    <Field name="Conta - Descrição" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\Alteryx\Originais\Conta Gráfica 2014\Conta Gráfica 2014.TXT" type="V_String" />
+                    <Field name="Contrato" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\Alteryx\Originais\Conta Gráfica 2014\Conta Gráfica 2014.TXT" type="V_String" />
                     <Field name="Valor Débito" scale="4" size="18" source="Formula: (Multiple Sources)" type="FixedDecimal" />
                     <Field name="Valor Crédito" scale="4" size="18" source="Formula: (Multiple Sources)" type="FixedDecimal" />
                     <Field name="Tipo" size="1073741823" source="Formula: (Multiple Sources)" type="V_WString" />
@@ -5517,7 +5523,7 @@ Período de Ap...</DefaultAnnotationText>
     </Node>
     <Node ToolID="233">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="122" y="54" width="320" height="24" />
+        <Position x="121" y="54" width="320" height="24" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -5536,7 +5542,7 @@ Período de Ap...</DefaultAnnotationText>
       <ChildNodes>
         <Node ToolID="229">
           <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-            <Position x="266" y="102" />
+            <Position x="265" y="102" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5556,7 +5562,7 @@ Período de Ap...</DefaultAnnotationText>
         </Node>
         <Node ToolID="230">
           <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-            <Position x="482" y="102" />
+            <Position x="481" y="102" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5595,7 +5601,7 @@ Período de Ap...</DefaultAnnotationText>
         </Node>
         <Node ToolID="231">
           <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
-            <Position x="386" y="102" />
+            <Position x="385" y="102" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5618,7 +5624,7 @@ Período de Ap...</DefaultAnnotationText>
         </Node>
         <Node ToolID="232">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-            <Position x="578" y="102" />
+            <Position x="577" y="102" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -5648,7 +5654,7 @@ Query=Sheet1</DefaultAnnotationText>
         </Node>
         <Node ToolID="234">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-            <Position x="146" y="101" />
+            <Position x="145" y="101" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -6344,9 +6350,8 @@ Query=Sheet1</DefaultAnnotationText>
     <DisableBrowse value="False" />
     <EnablePerformanceProfiling value="False" />
     <RunWithE2 value="True" />
-    <DefaultTZ value="Local" />
     <PredictiveToolsCodePage value="1252" />
-    <DisableAllOutput value="True" />
+    <DisableAllOutput value="False" />
     <ShowAllMacroMessages value="False" />
     <ShowConnectionStatusIsOn value="True" />
     <ShowConnectionStatusOnlyWhenRunning value="True" />
@@ -6355,7 +6360,7 @@ Query=Sheet1</DefaultAnnotationText>
     <IsTemplate value="False" />
     <MetaInfo>
       <NameIsFileName value="True" />
-      <Name>2 - Apuração de IR</Name>
+      <Name>20250814_Apuração de IR</Name>
       <Description />
       <RootToolName />
       <ToolVersion />
@@ -6370,9 +6375,9 @@ Query=Sheet1</DefaultAnnotationText>
         <Description />
         <File />
       </Example>
-      <WorkflowId value="fd83c6a2-0bb0-4db4-ad42-111f22168c80" />
+      <WorkflowId value="64c8e0bb-226c-47ae-b53d-1535d0e0b934" />
       <Telemetry>
-        <PreviousWorkflowId value="64c8e0bb-226c-47ae-b53d-1535d0e0b934" />
+        <PreviousWorkflowId value="266a5586-e37b-464f-ae29-1b03ac04ea1d" />
         <OriginWorkflowId value="e715148b-f2ac-4e31-9e65-d047fb58054d" />
       </Telemetry>
       <PlatformWorkflowId value="" />

@@ -3,7 +3,7 @@
   <Nodes>
     <Node ToolID="95">
       <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-        <Position x="54" y="54" width="1114" height="761" />
+        <Position x="112" y="53" width="1114" height="761" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -21,40 +21,37 @@
       <ChildNodes>
         <Node ToolID="42">
           <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-            <Position x="79" y="387" />
+            <Position x="137" y="386" />
           </GuiSettings>
           <Properties>
             <Configuration>
               <Passwords />
-              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\_projects\dev\superveniencia_csll\data\input\resumo\Conta Gráfica - Diligência 2014 - Completo - Teste.yxdb</File>
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\Conta Grafica - Diligencia 2018 - Completo.yxdb</File>
               <FormatSpecificOptions />
             </Configuration>
             <Annotation DisplayMode="0">
               <Name />
-              <DefaultAnnotationText>Conta Gráfica - Diligência 2014 - Completo - Teste.yxdb</DefaultAnnotationText>
+              <DefaultAnnotationText>Conta Grafica - Diligencia 2018 - Completo.yxdb</DefaultAnnotationText>
               <Left value="False" />
             </Annotation>
-            <Dependencies>
-              <Implicit />
-            </Dependencies>
             <MetaInfo connection="Output">
               <RecordInfo>
-                <Field name="DATA GERACAO" size="254" source="Formula: Replace([DATA GERACAO], &quot;99999999&quot;, &quot;20241031&quot;)" type="V_String" />
-                <Field name="CONTADOR DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="CONTA DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="VALOR DEBITO" scale="2" size="20" source="Formula: ToNumber([VALOR DEBITO])" type="FixedDecimal" />
-                <Field name="CONTADOR CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="CONTA CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="VALOR CREDITO" scale="2" size="20" source="Formula: ToNumber([VALOR CREDITO])" type="FixedDecimal" />
-                <Field name="COSIF DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="COSIF CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\_projects\dev\superveniencia_csll\data\input\anexo_b\Nova Base Diligencia 2014_v2.csv" type="V_String" />
-                <Field name="Data" source="DateTime: To yyyyMMdd" type="Date" />
+                <Field name="DATA GERACAO" source="DateTime: To yyyyMMdd" type="Date" />
+                <Field name="CONTADOR DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NUM CONTRATO DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="CONTA DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME CONTA DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="VALOR DEBITO" size="254" source="Formula: ToNumber([VALOR DEBITO], 1, 1, ',')" type="V_String" />
+                <Field name="CONTADOR CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NUM CONTRATO CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="CONTA CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME CONTA CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="VALOR CREDITO" size="254" source="Formula: ToNumber([VALOR CREDITO], 1, 1, ',')" type="V_String" />
+                <Field name="COSIF DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME COSIF DEBITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="COSIF CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="NOME COSIF CREDITO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
+                <Field name="OPERACAO" size="254" source="File: C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\01. Originais\Conta Grafica Diligencia 2018.csv" type="V_String" />
               </RecordInfo>
             </MetaInfo>
           </Properties>
@@ -62,7 +59,7 @@
         </Node>
         <Node ToolID="41">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="332" y="103" width="811" height="334" />
+            <Position x="390" y="102" width="811" height="334" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -81,19 +78,18 @@
           <ChildNodes>
             <Node ToolID="16">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="357" y="249" />
+                <Position x="415" y="248" />
               </GuiSettings>
               <Properties>
                 <Configuration>
                   <FormulaFields>
-                    <FormulaField expression="DateTimeParse([DATA GERACAO],&quot;%Y%m%d&quot;)" field="DATA GERACAO" size="254" type="V_String" enabled="true" />
                     <FormulaField expression="DateTimeYear([DATA GERACAO])" field="Ano" size="1073741823" type="V_WString" enabled="true" />
                   </FormulaFields>
                 </Configuration>
                 <Annotation DisplayMode="0">
                   <Name />
-                  <DefaultAnnotationText>DATA GERACAO = DateTimeParse([DATA GERACAO],"%Y%m%d")
-Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
+                  <DefaultAnnotationText><![CDATA[Ano = DateTimeYear([DATA GERACAO])
+]]></DefaultAnnotationText>
                   <Left value="False" />
                 </Annotation>
               </Properties>
@@ -101,7 +97,7 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
             </Node>
             <Node ToolID="18">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="489" y="321" />
+                <Position x="547" y="320" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -124,7 +120,6 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
                     <SelectField field="NUM CONTRATO DEBITO" selected="True" rename="Contrato" />
                     <SelectField field="VALOR DEBITO" selected="True" rename="Valor Débito" />
                     <SelectField field="VALOR CREDITO" selected="True" rename="Valor Crédito" />
-                    <SelectField field="OPERACAO" selected="False" />
                     <SelectField field="*Unknown" selected="False" />
                   </SelectFields>
                 </Configuration>
@@ -138,7 +133,7 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
             </Node>
             <Node ToolID="19">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="489" y="152" />
+                <Position x="547" y="151" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -161,7 +156,6 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
                     <SelectField field="NUM CONTRATO CREDITO" selected="True" rename="Contrato" />
                     <SelectField field="VALOR DEBITO" selected="True" rename="Valor Débito" />
                     <SelectField field="VALOR CREDITO" selected="True" rename="Valor Crédito" />
-                    <SelectField field="OPERACAO" selected="False" />
                     <SelectField field="*Unknown" selected="False" />
                   </SelectFields>
                 </Configuration>
@@ -175,7 +169,7 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
             </Node>
             <Node ToolID="20">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="716" y="223" />
+                <Position x="774" y="222" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -194,7 +188,7 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
             </Node>
             <Node ToolID="21">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="585" y="152" />
+                <Position x="643" y="151" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -215,7 +209,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="22">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="585" y="321" />
+                <Position x="643" y="320" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -236,7 +230,7 @@ Tipo = "D"
             </Node>
             <Node ToolID="23">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="825" y="225" />
+                <Position x="883" y="224" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -255,18 +249,17 @@ Tipo = "D"
             </Node>
             <Node ToolID="24">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="1017" y="225" />
+                <Position x="1075" y="224" />
               </GuiSettings>
               <Properties>
                 <Configuration>
-                  <File MaxRecords="" FileFormat="19">C:\_projects\dev\superveniencia_csll\data\input\resumo\Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</File>
+                  <File FileFormat="19" MaxRecords="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</File>
                   <Passwords />
                   <Disable>False</Disable>
                   <FormatSpecificOptions>
-                    <WriteCompatibleVersion>False</WriteCompatibleVersion>
                     <NoSpatialIndex>False</NoSpatialIndex>
                     <SaveSource>True</SaveSource>
-                    <SuppressBlankFile>False</SuppressBlankFile>
+                    <WriteCompatibleVersion>False</WriteCompatibleVersion>
                   </FormatSpecificOptions>
                   <MultiFile value="False" />
                 </Configuration>
@@ -275,15 +268,12 @@ Tipo = "D"
                   <DefaultAnnotationText>Conta Gráfica - Diligência 2018 - Completo (Reorganizado).yxdb</DefaultAnnotationText>
                   <Left value="False" />
                 </Annotation>
-                <Dependencies>
-                  <Implicit />
-                </Dependencies>
               </Properties>
               <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
             </Node>
             <Node ToolID="26">
               <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-                <Position x="921" y="225" />
+                <Position x="979" y="224" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -307,7 +297,7 @@ Tipo = "D"
         </Node>
         <Node ToolID="54">
           <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
-            <Position x="332" y="463" width="793" height="327" />
+            <Position x="390" y="462" width="793" height="327" />
           </GuiSettings>
           <Properties>
             <Configuration>
@@ -326,21 +316,20 @@ Tipo = "D"
           <ChildNodes>
             <Node ToolID="44">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="357" y="584" />
+                <Position x="415" y="583" />
               </GuiSettings>
               <Properties>
                 <Configuration>
                   <FormulaFields>
-                    <FormulaField expression="DateTimeParse([DATA GERACAO],&quot;%Y%m%d&quot;)" field="DATA GERACAO" size="254" type="V_String" enabled="true" />
-                    <FormulaField expression="DateTimeYear([DATA GERACAO])" field="Ano" size="64" type="String" enabled="true" />
-                    <FormulaField expression="PadLeft(ToString(DateTimeMonth([DATA GERACAO])),2,&quot;0&quot;)" field="Mês" size="64" type="String" enabled="true" />
-                    <FormulaField expression="DateTimeFormat([DATA GERACAO],&quot;%Y%m&quot;)" field="AnoMês" size="64" type="String" enabled="true" />
+                    <FormulaField expression="DateTimeYear([DATA GERACAO])" field="Ano" size="1073741823" type="V_WString" enabled="true" />
+                    <FormulaField expression="PadLeft(ToString(DateTimeMonth([DATA GERACAO])),2,&quot;0&quot;)" field="Mês" size="1073741823" type="V_WString" enabled="true" />
+                    <FormulaField expression="[Ano] + [Mês]" field="AnoMês" size="1073741823" type="V_WString" enabled="true" />
                   </FormulaFields>
                 </Configuration>
                 <Annotation DisplayMode="0">
                   <Name />
-                  <DefaultAnnotationText>DATA GERACAO = DateTimeParse([DATA GERACAO],"%Y%m%d")
-Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
+                  <DefaultAnnotationText>Ano = DateTimeYear([DATA GERACAO])
+Mês = PadLeft(ToString(DateTimeMonth([DATA GE...</DefaultAnnotationText>
                   <Left value="False" />
                 </Annotation>
               </Properties>
@@ -348,7 +337,7 @@ Ano = DateTimeYear([DATA G...</DefaultAnnotationText>
             </Node>
             <Node ToolID="48">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="573" y="512" />
+                <Position x="631" y="511" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -371,7 +360,7 @@ Valor Débito = [Valor Débito] * -1
             </Node>
             <Node ToolID="49">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-                <Position x="573" y="657" />
+                <Position x="631" y="656" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -392,7 +381,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="55">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="477" y="513" />
+                <Position x="535" y="512" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -418,7 +407,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="56">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="477" y="657" />
+                <Position x="535" y="656" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -444,7 +433,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="60">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="681" y="513" />
+                <Position x="739" y="512" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -475,7 +464,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="61">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
-                <Position x="681" y="657" />
+                <Position x="739" y="656" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -506,11 +495,11 @@ Tipo = "C"
             </Node>
             <Node ToolID="63">
               <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-                <Position x="1029" y="573" />
+                <Position x="1087" y="572" />
               </GuiSettings>
               <Properties>
                 <Configuration>
-                  <TempFile>C:\Users\JAQUEL~1\AppData\Local\Temp\Alteryx\Engine_22880_ef17108a8ae04deaa2e8ad656c4a5637_\Engine_22880_da22525485814127a1f74eae3bb5d4a7~.yxdb</TempFile>
+                  <TempFile>C:\Users\JAQUEL~1\AppData\Local\Temp\Alteryx\Engine_19420_3fe8436611414e2d9d082530359582e7_\Engine_19420_65947f9c6b1d4086aa8d8ac309a62dbc~.yxdb</TempFile>
                   <TempFileDataProfiling />
                   <Layout>
                     <ViewMode>Single</ViewMode>
@@ -534,7 +523,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="64">
               <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
-                <Position x="837" y="573" />
+                <Position x="895" y="572" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -553,7 +542,7 @@ Tipo = "C"
             </Node>
             <Node ToolID="65">
               <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
-                <Position x="933" y="573" />
+                <Position x="991" y="572" />
               </GuiSettings>
               <Properties>
                 <Configuration>
@@ -580,11 +569,11 @@ Tipo = "C"
             </Node>
             <Node ToolID="66">
               <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-                <Position x="1041" y="645" />
+                <Position x="1099" y="644" />
               </GuiSettings>
               <Properties>
                 <Configuration>
-                  <File FileFormat="19" MaxRecords="">C:\_projects\dev\superveniencia_csll\data\input\resumo\Conta Gráfica - Diligência 2018 - Completo (Reorganizado por AnoMes).yxdb</File>
+                  <File FileFormat="19" MaxRecords="">C:\Users\jaquelinerufino\OneDrive - KPMG\Documents\Desenvolvimento\Lighthouse\Itaú\03. Alteryx Databases\Conta Gráfica - Diligência 2018 - Completo (Reorganizado por AnoMes).yxdb</File>
                   <Passwords />
                   <Disable>False</Disable>
                   <FormatSpecificOptions>
@@ -719,7 +708,7 @@ Tipo = "C"
     <IsTemplate value="False" />
     <MetaInfo>
       <NameIsFileName value="True" />
-      <Name>1 - Conta Grafica Reorganizada</Name>
+      <Name>toyxdb - Conta Grafica Reorganizada</Name>
       <Description />
       <RootToolName />
       <ToolVersion />
@@ -734,9 +723,9 @@ Tipo = "C"
         <Description />
         <File />
       </Example>
-      <WorkflowId value="d3d584d7-1878-409d-9636-2024b7502778" />
+      <WorkflowId value="ac6746da-a2a6-465f-9aeb-9ca02f2714ff" />
       <Telemetry>
-        <PreviousWorkflowId value="ac6746da-a2a6-465f-9aeb-9ca02f2714ff" />
+        <PreviousWorkflowId value="a07e4f32-d450-4d54-95e4-609dd22dd77b" />
         <OriginWorkflowId value="a07e4f32-d450-4d54-95e4-609dd22dd77b" />
       </Telemetry>
       <PlatformWorkflowId value="" />
