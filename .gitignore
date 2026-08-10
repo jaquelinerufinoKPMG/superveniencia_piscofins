@@ -3,6 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# OS/editor artifacts
+.DS_Store
+Thumbs.db
+
+# Office temporary lock files
+~$*.xlsx
+~$*.xlsm
+~$*.xls
+
 # C extensions
 *.so
 

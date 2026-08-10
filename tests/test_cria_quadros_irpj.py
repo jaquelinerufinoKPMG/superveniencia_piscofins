@@ -2,6 +2,7 @@ from datetime import datetime
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -13,6 +14,8 @@ from src.resumo.cria_quadros_irpj import (
     cria_quadro_6,
     preparar_conta_grafica,
 )
+from src.resumo.cria_quadros_pis import preparar_conta_grafica as preparar_conta_grafica_pis
+from src.resumo.cria_quadros_pis import cria_quadro_2 as cria_quadro_2_pis
 
 
 class CriaQuadrosIrpjTestCase(unittest.TestCase):
@@ -91,7 +94,7 @@ class CriaQuadrosIrpjTestCase(unittest.TestCase):
             debito_invalido = df[df["Contador"] == "2"].sort_values("Tipo").iloc[0]
             self.assertTrue(pd.isna(debito_invalido["Valor Debito"]))
 
-    def test_preparar_conta_grafica_rejeita_coluna_extra_nao_vazia(self) -> None:
+    def test_preparar_conta_grafica_ignora_coluna_extra_nao_vazia(self) -> None:
         with TemporaryDirectory() as tmp_dir:
             csv_path = Path(tmp_dir) / "conta_grafica.csv"
             rows = [[
@@ -114,8 +117,67 @@ class CriaQuadrosIrpjTestCase(unittest.TestCase):
             ]]
             self._write_csv(csv_path, rows)
 
-            with self.assertRaisesRegex(ValueError, "colunas extras não vazias"):
-                preparar_conta_grafica(csv_path, data_final=datetime(2024, 12, 31))
+            df = preparar_conta_grafica(
+                csv_path,
+                data_final=datetime(2024, 12, 31),
+                salvar_parquet=False,
+            )
+
+            self.assertEqual(2, len(df))
+            self.assertEqual("23210000000000", df[df["Tipo"] == "D"].iloc[0]["COSIF"])
+
+    def test_preparar_conta_grafica_pis_ignora_linha_field_e_coluna_extra(self) -> None:
+        with TemporaryDirectory() as tmp_dir:
+            csv_path = Path(tmp_dir) / "conta_grafica_pis.csv"
+            rows = [
+                [
+                    "Field",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                    "metadata",
+                ],
+                [
+                    "20220101",
+                    "1",
+                    "1234567",
+                    "1000",
+                    "Conta Debito",
+                    "10,50",
+                    "10",
+                    "1234567",
+                    "71300010030016",
+                    "Conta Credito",
+                    "100,25",
+                    "17110000000000",
+                    "COSIF Debito",
+                    "71210001000000",
+                    "COSIF Credito",
+                    "EXTRA",
+                ],
+            ]
+            self._write_csv(csv_path, rows)
+
+            df = preparar_conta_grafica_pis(
+                csv_path,
+                data_final=datetime(2024, 12, 31),
+                salvar_parquet=False,
+            )
+
+            self.assertEqual(2, len(df))
+            self.assertEqual("string", str(df["COSIF"].dtype))
+            self.assertEqual("17110000000000", df[df["Tipo"] == "D"].iloc[0]["COSIF"])
 
     def test_quadros_2_a_6_expandem_anos_e_geram_totais(self) -> None:
         conta_grafica = pd.DataFrame(
@@ -210,6 +272,80 @@ class CriaQuadrosIrpjTestCase(unittest.TestCase):
             self.assertEqual(70.0, linha_2022_q6["BASE DO IRPJ"])
             self.assertEqual(70.0, linha_2022_q6["BASE DO CSLL"])
             self.assertEqual(0.0, linha_2022_q6["DIFERENÇA"])
+
+    def test_cria_quadro_2_le_parquet_com_colunas_minimas(self) -> None:
+        parquet_path = Path("conta_grafica.parquet")
+        mock_df = pd.DataFrame(
+            [
+                {
+                    "Conta": "71300010030016",
+                    "Valor Líquido": 40.0,
+                    "Num Contrato": "7654321",
+                    "Ano": "2022",
+                }
+            ]
+        )
+
+        with TemporaryDirectory() as tmp_dir, patch(
+            "src.resumo.cria_quadros_irpj.pd.read_parquet", return_value=mock_df
+        ) as mock_read_parquet:
+            cria_quadro_2(parquet_path, Path(tmp_dir))
+
+            mock_read_parquet.assert_called_once_with(
+                parquet_path,
+                columns=["Conta", "Valor Líquido", "Num Contrato", "Ano"],
+            )
+
+    def test_cria_quadro_2_envia_contrato_ao_ler_parquet(self) -> None:
+        parquet_path = Path("conta_grafica.parquet")
+        mock_df = pd.DataFrame(
+            [
+                {
+                    "Conta": "71300010030016",
+                    "Valor Líquido": 40.0,
+                    "Num Contrato": "7654321",
+                    "Ano": "2022",
+                }
+            ]
+        )
+
+        with TemporaryDirectory() as tmp_dir, patch(
+            "src.resumo.cria_quadros_irpj.pd.read_parquet", return_value=mock_df
+        ) as mock_read_parquet:
+            quadro_2 = cria_quadro_2(parquet_path, Path(tmp_dir), contrato="7654321")
+
+            mock_read_parquet.assert_called_once_with(
+                parquet_path,
+                columns=["Conta", "Valor Líquido", "Num Contrato", "Ano"],
+                filters=[("Num Contrato", "in", ["7654321"])],
+            )
+            self.assertEqual(["7654321", "7654321"], quadro_2["Contrato"].tolist())
+
+    def test_cria_quadro_2_pis_filtra_contrato_ao_ler_dataframe(self) -> None:
+        conta_grafica = pd.DataFrame(
+            [
+                {
+                    "Conta": "71300010030016",
+                    "Valor Líquido": 40.0,
+                    "Num Contrato": "7654321",
+                    "Ano": "2022",
+                },
+                {
+                    "Conta": "71300010030016",
+                    "Valor Líquido": 15.0,
+                    "Num Contrato": "1234567",
+                    "Ano": "2022",
+                },
+            ]
+        )
+
+        with TemporaryDirectory() as tmp_dir:
+            quadro_2 = cria_quadro_2_pis(
+                conta_grafica, Path(tmp_dir), contrato="7654321"
+            )
+
+            self.assertEqual(["7654321", "7654321"], quadro_2["Contrato"].tolist())
+            self.assertEqual(40.0, quadro_2.iloc[0]["Valor Contabilizado"])
 
 
 if __name__ == "__main__":
